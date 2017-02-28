@@ -4,7 +4,7 @@ CPS630 Final Project
 Repository for Web Applications (CPS630)
 
 ###Off The Shelf
-A web application service that provdies independant pharmacies
+A web application service that provides independant pharmacies
 a way to broadcast expiring goods, at discounted prices.
 
 Authors: 
