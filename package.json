@@ -4,19 +4,27 @@
   "description": "CPS630 Final Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LynW/offtheshelf.git"
+    "url": "git+https://github.com/trandaniel/offtheshelf.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Daniel Tran",
+  "contributors": [
+    {"name": "Balin Banh"},
+    {"name": "Beverly Li"},
+    {"name": "Austin Tam"},
+    {"name": "Carolyn Wang"},
+    {"name": "Jonathan Yuen"}
+  ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LynW/offtheshelf/issues"
+    "url": "https://github.com/trandaniel/offtheshelf/issues"
   },
-  "homepage": "https://github.com/LynW/offtheshelf#readme",
+  "homepage": "https://github.com/trandaniel/offtheshelf#readme",
   "dependencies": {
     "express": "^4.15.2"
   }
