@@ -14,11 +14,21 @@
   "keywords": [],
   "author": "Daniel Tran",
   "contributors": [
-    {"name": "Balin Banh"},
-    {"name": "Beverly Li"},
-    {"name": "Austin Tam"},
-    {"name": "Carolyn Wang"},
-    {"name": "Jonathan Yuen"}
+    {
+      "name": "Balin Banh"
+    },
+    {
+      "name": "Beverly Li"
+    },
+    {
+      "name": "Austin Tam"
+    },
+    {
+      "name": "Carolyn Wang"
+    },
+    {
+      "name": "Jonathan Yuen"
+    }
   ],
   "license": "ISC",
   "bugs": {
@@ -26,6 +36,7 @@
   },
   "homepage": "https://github.com/trandaniel/offtheshelf#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mongodb": "^2.2.24"
   }
 }
