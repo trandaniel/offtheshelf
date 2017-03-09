@@ -6,3 +6,9 @@
       color: green;
     }
 }
+
+form {
+  > #loginForm {
+    margin-right: 10px ;
+  }
+}
