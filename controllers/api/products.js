@@ -1,0 +1,28 @@
+var Product = require('../../app/models/product') ;
+var router = require('express').Router() ;
+
+router.get('/', function(req, res, nxt) {
+  Product.find().exec(function(err, products) {
+    if(err) {
+      return nxt(err) ;
+    }
+    res.json(products) ;
+  }) ;
+}) ;
+
+router.post('/', function(req, res, nxt) {
+  var product = new Product({
+    name: req.body.name,
+    cost: req.body.cost,
+    stock: req.body.stock,
+    sellBy: req.body.sellBy,
+    posted: req.body.posted
+  }) ;
+  product.save(function(err, msg) {
+    if(err) {
+      return nxt(err) ;
+    }
+    res.json(201, msg) ;
+  }) ;
+}) ;
+module.exports = router ;
