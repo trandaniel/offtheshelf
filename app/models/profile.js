@@ -1,6 +1,7 @@
-var mongoose = require('mongoose') ;
-
+var db = require('../../config/db') ;
 //define profile model
-module.exports = mongoose.model('Profile', {
-  name: {type: String, default: ''}
+var Profile = db.model('Profile', {
+  name: {type: String, required: true}
 }) ;
+
+module.exports = Profile ;

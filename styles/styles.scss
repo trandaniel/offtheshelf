@@ -1,0 +1,8 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@for $index from 1 through 6 {
+    h#{$index} {
+      color: green;
+    }
+}
