@@ -1,7 +1,7 @@
 var Profile = require('../../app/models/profile') ;
 var router = require('express').Router() ;
 
-//reading info
+// get profile
 router.get('/', function(req, res, nxt) {
   Profile.find().exec(function(err, profiles) {
     if(err) {
@@ -11,7 +11,7 @@ router.get('/', function(req, res, nxt) {
   }) ;
 }) ;
 
-//adding
+// add profile
 router.post('/', function(req, res, nxt) {
   var profile = new Profile({
     name: req.body.name,

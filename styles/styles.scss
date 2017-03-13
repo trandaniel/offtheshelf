@@ -1,14 +1,43 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@for $index from 1 through 6 {
-    h#{$index} {
-      color: green;
-    }
-}
+$break-med: 769px ;
+
 
 form {
   > #loginForm {
     margin-right: 10px ;
+  }
+  > div {
+    > .form-control {
+      width: 90% ;
+      margin: 0 auto 0 auto ;
+    }
+  }
+
+  > button {
+    margin-left: 5% ;
+    @media screen and (min-width: $break-med) {
+      margin-left: 0px ;
+    }
+  }
+}
+
+.container {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center ;
+
+  > h1 {
+    color: rgb(78, 159, 245) ;
+
+    @media screen and (min-width: $break-med) {
+      margin-top: 75px ;
+    }
+
+    margin-top: 210px ;
+  }
+
+  > div {
+    font-size: 20px ;
   }
 }

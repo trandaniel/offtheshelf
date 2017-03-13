@@ -1,6 +1,7 @@
 var Product = require('../../app/models/product') ;
 var router = require('express').Router() ;
 
+// get products
 router.get('/', function(req, res, nxt) {
   Product.find().exec(function(err, products) {
     if(err) {
@@ -10,6 +11,7 @@ router.get('/', function(req, res, nxt) {
   }) ;
 }) ;
 
+// add product
 router.post('/', function(req, res, nxt) {
   var product = new Product({
     name: req.body.name,
