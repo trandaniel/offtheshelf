@@ -1,8 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$break-med: 769px ;
-
+$break-med: 768px ;
+$break-sm: 684px ;
 
 form {
   > #loginForm {
@@ -27,6 +27,33 @@ form {
   font-family: 'Montserrat', sans-serif;
   text-align: center ;
 
+  > .signup {
+    @media screen and (min-width: $break-med) {
+      margin-top: 75px ;
+    }
+
+    > button {
+      margin: 10px auto 0 auto ;
+      width: 100% ;
+
+      @media screen and (min-width: $break-sm) {
+        width: 50% ;
+      }
+
+    }
+
+    > #resetValues {
+      @media screen and (min-width: $break-sm) {
+        width: 49% ;
+        margin-left: 0.2% ;
+      }
+    }
+
+    margin-top: 210px ;
+    text-align: left ;
+    font-size: 20px ;
+
+  }
   > h1 {
     color: rgb(78, 159, 245) ;
 

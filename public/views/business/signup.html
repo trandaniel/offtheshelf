@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" charset="utf-8">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../">
+            <img src="non.jpg" alt="carolynpls">
+          </a>
+        </div>
+
+        <form class="navbar-form navbar-right" action="index.html" method="post">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username">
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+          <button class="btn btn-default" type="submit" name="button" >Sign In</button>
+          <a href="business/signup.html" id="loginForm"><button class="btn btn-default" type="button" name="button">Sign Up</button></a>
+        </form>
+      </nav>
+    </div>
+
+    <div class="container">
+      <form class="signup" action="confirmation" method="post">
+        Name: <input type="text" class="form-control" name="name" placeholder="PharmaC">
+        Email: <input type="text" class="form-control" name="email" placeholder="example@email.com">
+        Password: <input type="password" class="form-control" name="" value="">
+        Confirm Password: <input type="password" class="form-control" name="" value=""><br>
+        Find your pharmacy on the map! <br>
+        <!-- MAP HERE -->
+        Or type in your address. <br> <br>
+        Street Number: <input type="text" class="form-control" name="" value="">
+        Street Name: <input type="text" class="form-control" name="" value="">
+        Country: <input type="text" class="form-control" name="" value="">
+        City: <input type="text" class="form-control" name="" value="">
+        <button type="submit" class="btn btn-default" name="button">Submit</button>
+        <button type="reset" class="btn btn-default" id="resetValues" name="button">Clear Values</button>
+      </form>
+    </div>
+  </body>
+</html>
