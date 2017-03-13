@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add a product to your profile!</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" charset="utf-8">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../">
+            <img src="non.jpg" alt="carolynpls">
+          </a>
+        </div>
+
+        <form class="navbar-form navbar-right" action="index.html" method="post">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username">
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+          <button class="btn btn-default" type="submit" name="button" >Sign In</button>
+          <a href="#" id="loginForm"><button class="btn btn-default" type="button" name="button">Sign Up</button></a>
+        </form>
+      </nav>
+    </div>
+
+    <div class="container">
+      <h1>Add a new product you wish to sell!</h1>
+      <form class="addProd" action="prodList" method="post">
+        Product name: <input type="text" class="form-control" name="" value="">
+        Product cost: <input type="text" class="form-control" name="" value="">
+        Stock: <input type="text" class="form-control" name="" value="">
+        Sell by: <input type="date" class="form-control" name="" value="" placeholder="yyyy-mm-dd">
+        <button type="submit" class="btn btn-default" name="button">Add product!</button>
+        <button type="button" class="btn btn-default" id="resetValues" name="button">Clear</button>
+      </form>
+    </div>
+  </body>
+</html>

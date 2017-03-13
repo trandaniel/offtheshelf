@@ -27,7 +27,7 @@ form {
   font-family: 'Montserrat', sans-serif;
   text-align: center ;
 
-  > .signup {
+  > form {
     @media screen and (min-width: $break-med) {
       margin-top: 75px ;
     }
