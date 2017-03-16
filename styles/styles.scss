@@ -11,7 +11,8 @@ $break-sm: 684px ;
 
 #map {
   min-height: 300px;
-  height: auto;
+  height: 80%;
+  min-width: 300px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -26,6 +27,7 @@ $break-sm: 684px ;
 
 .textInput {
   margin-bottom: 10px;
+  padding: 20px;
 }
 
 form {
