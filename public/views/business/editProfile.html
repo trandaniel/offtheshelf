@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Profile</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" charset="utf-8">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../">
+            <img src="non.jpg" alt="carolynpls">
+          </a>
+        </div>
+
+        <form class="navbar-form navbar-right" action="index.html" method="post">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username">
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+          <button class="btn btn-default" type="submit" name="button" >Sign In</button>
+          <a href="#" id="loginForm"><button class="btn btn-default" type="button" name="button">Sign Up</button></a>
+        </form>
+      </nav>
+    </div>
+
+
+    <div class="container">
+      <form class="editProfile" action="confirm" method="post">
+        <h3>Login Information</h3>
+        Name: <div class="currentInfo" id = "currentName"></div>
+        <input type="text" class="form-control textInput" name="editname" placeholder="New name" required>
+
+        Email: <div class="currentInfo" id = "currentEmail"></div>
+        <input type="text" class="form-control textInput" name="editemail" placeholder="New email" required>
+
+        Password:
+        <div class="currentInfo">Current Password:</div>
+        <input type="password" class="form-control textInput" name="" placeholder="Current Password" required>
+        <div class="currentInfo">New Password</div>
+        <div class="error"></div>
+        <input type="password" class="form-control textInput" name="" placeholder="New Password" id="newPassword" required>
+        <input type="password" class="form-control textInput" name="" placeholder="Confirm New Password" id="newPasswordConfirm" required>
+
+        <h3>Business Information</h3>
+        Street Number: <div class="currentInfo"></div>
+        <input type="text" class="form-control textInput" name="editstreetnum" placeholder="New Street Number" required>
+
+        Street Name: <div class="currentInfo"></div>
+        <input type="text" class="form-control textInput" name="editstreetname" placeholder="New Street Name" required>
+
+        Country: <div class="currentInfo"></div>
+        <input type="text" class="form-control textInput" name="editcountry" placeholder="New name" required>
+
+        City:<div class="currentInfo"></div>
+        <input type="text" class="form-control textInput" name="editcity" placeholder="New name" required>
+
+        <div class="container-fluid">
+          <button type="submit" class="btn btn-default productButtons" name="">Submit</button>
+          <button type="button" class="btn btn-default productButtons" name="">Cancel</button>
+        </div>
+
+      </form>
+    </div>
+  </body>
+</html>
