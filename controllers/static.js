@@ -6,8 +6,8 @@ router.get('/', function(req, res) {
   res.sendfile('public/views/index.html') ;
 }) ;
 
-router.get('/signUp', function(req, res) {
-  res.sendfile('public/views/business/signUp.html') ;
+router.get('/signup', function(req, res) {
+  res.sendfile('public/views/business/signup.html') ;
 }) ;
 
 router.post('/confirm', function(req, res) {
