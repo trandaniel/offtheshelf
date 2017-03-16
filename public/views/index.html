@@ -5,6 +5,7 @@
     <title>Yes</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" charset="utf-8">
+    <script type="text/javascript" src="mapFunctionality.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -33,6 +34,12 @@
         Find what you're looking for!
         <input type="text" class="form-control" name="search" placeholder="Search">
       </div>
+    </div>
+
+    <div class="" id="map" onload="mapInit()">
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCioBIw7Zm_9e0Z3a8O0QGVawEZRwPs9TY&callback=initMap">
+      </script>
     </div>
     <script src="app.js" charset="utf-8"></script>
   </body>
