@@ -22,7 +22,6 @@ app.use(express.static(__dirname + '/public'));
 
 // routes===================================================================
 app.use(require('./controllers/static')) ;
-console.log("yes") ;
 
 app.listen(port, function() {
     console.log('Listening on port: ' + port);

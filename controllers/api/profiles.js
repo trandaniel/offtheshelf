@@ -1,5 +1,7 @@
 var Profile = require('../../app/models/profile') ;
 var router = require('express').Router() ;
+var mongodb = require('mongodb') ;
+var ObjectID = mongodb.ObjectID ;
 
 // get profile
 router.get('/', function(req, res, nxt) {
@@ -8,6 +10,16 @@ router.get('/', function(req, res, nxt) {
       return nxt(err) ;
     }
     res.json(profiles) ;
+  }) ;
+}) ;
+
+// get single profile by objID
+router.get('/:id', function(req, res, nxt) {
+  Profile.findOne({_id: new ObjectID(req.params.id)}, function(err, msg) {
+    if(err) {
+      return nxt(err) ;
+    }
+    res.json(201, msg) ;
   }) ;
 }) ;
 
