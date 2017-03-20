@@ -6,8 +6,9 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" charset="utf-8">
   <script type="text/javascript" src="mapFunctionality.js"></script>
+  <script type="text/javascript" src="login.js"></script>
 </head>
-<body>
+<body onload="checkLoggedIn()">
   <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-header">
@@ -16,16 +17,42 @@
         </a>
       </div>
 
-      <form class="navbar-form navbar-right" action="index.html" method="post">
+      <form class="navbar-form navbar-right" action="" method="GET" onsubmit="login(event)">
         <div class="form-group">
+<<<<<<< HEAD
           <input type="text" class="form-control" placeholder="Username">
           <input type="password" class="form-control" placeholder="Password">
+=======
+          <input type="text" class="form-control" id="username" placeholder="Username">
+          <input type="password" class="form-control" id="pass" placeholder="Password">
         </div>
-        <button class="btn btn-default" type="submit" name="button" >Sign In</button>
-        <a href="signup" id="loginForm"><button class="btn btn-default" type="button" name="button">Sign Up</button></a>
+        <button class="btn btn-default" type="submit" name="button" id="signinbutton">Sign In</button>
+        <a href="signup" id="loginForm"><button class="btn btn-default" type="button" name="button" id="signupbutton">Sign Up</button></a>
+        <div id="loginerror">
+          Incorrect username or password!
+>>>>>>> 12b37547324cc9b1e5b2c2d37cc5fef05af98afb
+        </div>
       </form>
+      <div class="navbar-right">
+        <span id="displayusername"></span>
+        <button class="btn btn-default" type="button" name="button" onclick="logout()" id="logoutbutton">Log Out</button>
+      </div>
     </nav>
   </div>
+<<<<<<< HEAD
+=======
+
+  <div class="container">
+    <h1>"go to your javascript file" - sam</h1>
+    <img src="no.png" alt="pliscarol">
+    <div>
+      Find what you're looking for!
+      <input type="text" class="form-control" name="search" placeholder="Search">
+    </div>
+  </div>
+  <div class="" id="map" onload="initMap()">
+
+>>>>>>> 12b37547324cc9b1e5b2c2d37cc5fef05af98afb
     <div class="container">
       <h1>"go to your javascript file" - sam</h1>
       <img src="no.png" alt="pliscarol">
@@ -37,8 +64,11 @@
     <div class="" id="map" onload="mapInit()">
     </div>
     <script src="app.js" charset="utf-8"></script>
+<<<<<<< HEAD
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaObGOdKXJwQLS9a8i9Kj5WpW3wdpAu9M&callback=initMap">
     </script>
+=======
+>>>>>>> 12b37547324cc9b1e5b2c2d37cc5fef05af98afb
   </body>
 </html>
