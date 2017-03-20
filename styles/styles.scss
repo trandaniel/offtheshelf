@@ -6,7 +6,26 @@ $break-sm: 684px ;
 
 .currentInfo {
   color: grey;
-  font-size: 15px;
+}
+
+#loginerror {
+  font-size: 14px;
+  color: red;
+  display: none;
+}
+
+#logoutbutton {
+  display: none;
+  padding-top: 5px;
+}
+
+#displayusername {
+  font-size: 20px;
+  font-style: italic;
+  color: white;
+  padding-right: 50px;
+  display: none;
+  padding-top: 10px;
 }
 
 #map {
@@ -26,8 +45,7 @@ $break-sm: 684px ;
 }
 
 .textInput {
-  margin-bottom: 10px;
-  padding: 20px;
+    margin-bottom: 10px;
 }
 
 form {

@@ -5,6 +5,7 @@
     <title>Add a product to your profile!</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" charset="utf-8">
+    <script type="text/javascript" src="product.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -29,13 +30,13 @@
     <div class="container">
       <br>
       <h1>Add a new product you wish to sell!</h1>
-      <form class="addProd" action="prodList" method="post">
+      <form class="addProd" action="" method="get" onsubmit="getInput()">
         Product name: <input type="text" class="form-control textInput" name="" value="">
         Product cost: <input type="text" class="form-control textInput" name="" value="">
         Stock: <input type="text" class="form-control textInput" name="" value="">
         Sell by: <input type="date" class="form-control textInput" name="" value="" placeholder="yyyy-mm-dd">
         <button type="submit" class="btn btn-default productButtons" name="button">Add product!</button>
-        <button type="button" class="btn btn-default productButtons" id="resetValues" name="button">Clear</button>
+        <button type="button" class="btn btn-default productButtons" id="resetValues" name="">Clear</button>
       </form>
     </div>
   </body>
