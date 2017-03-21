@@ -1,7 +1,8 @@
 var Profile = require('../../app/models/profile') ;
 var router = require('express').Router() ;
-var mongodb = require('mongodb') ;
-var ObjectID = mongodb.ObjectID ;
+var mongoose = require('mongoose') ;
+var ObjectID = mongoose.Types.ObjectId ;
+
 
 // get profile
 router.get('/', function(req, res, nxt) {
@@ -25,6 +26,7 @@ router.get('/:id', function(req, res, nxt) {
 
 // add profile
 router.post('/', function(req, res, nxt) {
+
   var profile = new Profile({
     name: req.body.name,
     email: req.body.email,
@@ -33,15 +35,26 @@ router.post('/', function(req, res, nxt) {
       street: req.body.street,
       country: req.body.country,
       city: req.body.city,
-      lat: req.body.lat,
-      lng: req.body.lng
+      lat: "test",
+      lng: "Test"
     }
+  },{
+    versionKey: false
   }) ;
+  //console.log(mongoose.db);
+  /*mongoose.collection("profiles").insertOne(profile, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new contact.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });*/
   profile.save(function(err, msg) {
     if(err) {
       return nxt(err) ;
     }
-    res.json(201, msg) ;
+    //res.json(201, msg) ;
+    res.redirect(201, '../../confirm');
   }) ;
 }) ;
 

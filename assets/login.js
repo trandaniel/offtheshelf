@@ -21,7 +21,7 @@ function checkLoggedIn() {
 
 function login(e) {
   e.preventDefault();
-
+  console.log("hello");
   var xhr = new XMLHttpRequest();
   var rootweb = "http://" + window.location.hostname + ":" + window.location.port + "/api/profiles";
 

@@ -10,7 +10,7 @@ router.get('/signup', function(req, res) {
   res.sendfile('public/views/business/signup.html') ;
 }) ;
 
-router.post('/confirm', function(req, res) {
+router.get('/confirm', function(req, res) {
   res.sendfile('public/views/business/confirm.html') ;
 }) ;
 
