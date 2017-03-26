@@ -5,8 +5,9 @@
     <title>Edit Profile</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" charset="utf-8">
+    <script type="text/javascript" src="editProfile.js"></script>
   </head>
-  <body>
+  <body onload="setCurrents()">
     <div class="container-fluid">
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
@@ -26,36 +27,35 @@
       </nav>
     </div>
 
-
     <div class="container">
-      <form class="editProfile" action="confirm" method="post">
+      <form class="editProfile" action="/api/profiles?_method=PUT" method="POST">
         <h3>Login Information</h3>
-        Name: <div class="currentInfo" id = "currentName"></div>
-        <input type="text" class="form-control textInput" name="editname" placeholder="New name" required>
+        Name: <input type="text" class="currentInfo" id = "currentName" name="name" readonly></input>
+        <input type="text" class="form-control textInput" name="editname" placeholder="New name">
 
-        Email: <div class="currentInfo" id = "currentEmail"></div>
-        <input type="text" class="form-control textInput" name="editemail" placeholder="New email" required>
+        Email: <input type="text" class="currentInfo" id = "currentEmail" name="email" readonly></input>
+        <input type="text" class="form-control textInput" name="editemail" placeholder="New email">
 
         Password:
-        <div class="currentInfo">Current Password:</div>
-        <input type="password" class="form-control textInput" name="" placeholder="Current Password" required>
-        <div class="currentInfo">New Password</div>
+        <div class="passwordInfo">Current Password:</div>
+        <input type="password" class="form-control textInput" name="currentpass" id="currentPass" placeholder="Current Password">
+        <div class="passwordInfo">New Password</div>
         <div class="error"></div>
-        <input type="password" class="form-control textInput" name="" placeholder="New Password" id="newPassword" required>
-        <input type="password" class="form-control textInput" name="" placeholder="Confirm New Password" id="newPasswordConfirm" required>
+        <input type="password" class="form-control textInput" name="newpass" placeholder="New Password" id="newPassword">
+        <input type="password" class="form-control textInput" name="confirmpass" placeholder="Confirm New Password" id="newPasswordConfirm">
 
         <h3>Business Information</h3>
-        Street Number: <div class="currentInfo"></div>
-        <input type="text" class="form-control textInput" name="editstreetnum" placeholder="New Street Number" required>
+        Street Number: <input type="text" class="currentInfo" id = "currentStreetNum" name="streetnum" readonly></input>
+        <input type="text" class="form-control textInput" name="editstreetnum" placeholder="New Street Number">
 
-        Street Name: <div class="currentInfo"></div>
-        <input type="text" class="form-control textInput" name="editstreetname" placeholder="New Street Name" required>
+        Street Name: <input type="text" class="currentInfo" id = "currentStreet" name="streetname" readonly></input>
+        <input type="text" class="form-control textInput" name="editstreetname" placeholder="New Street Name">
 
-        Country: <div class="currentInfo"></div>
-        <input type="text" class="form-control textInput" name="editcountry" placeholder="New name" required>
+        Country: <input type="text" class="currentInfo" id = "currentCountry" name="country" readonly></input>
+        <input type="text" class="form-control textInput" name="editcountry" placeholder="New name">
 
-        City:<div class="currentInfo"></div>
-        <input type="text" class="form-control textInput" name="editcity" placeholder="New name" required>
+        City: <input type="text" class="currentInfo" id = "currentCity" name="city" readonly></input>
+        <input type="text" class="form-control textInput" name="editcity" placeholder="New name">
 
         <div class="container-fluid">
           <button type="submit" class="btn btn-default productButtons" name="">Submit</button>

@@ -4,7 +4,14 @@
 $break-med: 768px ;
 $break-sm: 684px ;
 
+
 .currentInfo {
+  color: grey;
+  display: inline-flex;
+  border: none;
+  background-color: white;
+}
+.passwordInfo {
   color: grey;
 }
 
