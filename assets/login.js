@@ -1,9 +1,11 @@
 var dataloaded = false;
 var profiles;
-var user;
+var user; //email
 var pass;
-var name;
 
+/*
+  Check to see if user is logged in. Instantiated onload()
+*/
 function checkLoggedIn() {
   console.log("checking");
   console.log(typeof sessionStorage.login);
@@ -47,6 +49,9 @@ function clearFields() {
   document.getElementById('pass').value = "";
 }
 
+/*
+  Check if user and password match
+*/
 function checkCreds() {
   if (dataloaded == true) {
     console.log("dataloaded");
@@ -73,6 +78,9 @@ function checkCreds() {
   }
 }
 
+/*
+  For session information storage
+*/
 function setStorage(profile) {
   sessionStorage.name = profile.name.toString();
   sessionStorage.streetnumber = (profile.location.streetnumber);
@@ -97,6 +105,9 @@ function changeloginUI() {
   document.getElementById('logoutbutton').style.display = "inline-block";
 }
 
+/*
+  Clear session information
+*/
 function logout() {
   document.getElementById('displayusername').innerHTML = "";
   sessionStorage.login = undefined;

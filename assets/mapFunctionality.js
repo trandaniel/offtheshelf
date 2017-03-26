@@ -1,6 +1,5 @@
 var map;
 var currentPos = [];
-var infoWindow;
 var geomarker;
 var locations;
 var markers = [];
@@ -13,7 +12,6 @@ function initMap() {
     center: {lat: -34.397, lng: 150.644},
     zoom: 15
   });
-  //infoWindow = new google.maps.InfoWindow({map: map});
   geocoder = new google.maps.Geocoder;
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
@@ -24,8 +22,10 @@ function initMap() {
       };
       currentPos.push(position.coords.latitude);
       currentPos.push(position.coords.longitude);
-      //infoWindow.setPosition(pos);
-      //infoWindow.setContent('Current Location');
+
+      /*
+        Creates custom marker for current location.
+      */
       var myloc = new google.maps.Marker({
           clickable: false,
           icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
@@ -61,6 +61,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     'Error: Your browser doesn\'t support geolocation.');
   }
 
+/*
+  Get profiles from api
+*/
 function getLocations() {
   console.log("getting locations");
   var xhr = new XMLHttpRequest();
@@ -82,6 +85,9 @@ function getLocations() {
 
 }
 
+/*
+  Set markers of all profiles, up to 26 markers will be show.
+*/
 function setMarkers() {
   var latlng;
   var infoOutput = "";
@@ -103,6 +109,9 @@ function setMarkers() {
   document.getElementById('displayInfo').innerHTML = infoOutput;
 }
 
+/*
+  Populates area where business information displayed.
+*/
 function setoutput(mark, index) {
   console.log(mark.location);
   var address = "<h4>" + mark.location.streetnumber + " " + mark.location.street + "</h4><p>" + mark.location.city + ", " + mark.location.country + "</p>";
@@ -113,7 +122,7 @@ function setoutput(mark, index) {
 function highlightMarker(contents) {
   console.log("clicked");
   stopCurrentAnimations();
-  var index = labels.indexOf(contents.charAt(contents.indexOf("</h2>") -1));
+  var index = labels.indexOf(contents.charAt(contents.indexOf("</h2>") -1)); //Get marker index by relating to position of label A,B,C ec
   var selected = markers[index];
   selected.setAnimation(google.maps.Animation.BOUNCE);
 }

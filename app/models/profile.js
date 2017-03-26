@@ -2,6 +2,7 @@
 var db = require('../../config/db') ;
 var mongoose = require('mongoose') ;
 
+//variable required to dictate how JSON object will look
 var locationSchema = new mongoose.Schema({
   street: {type: String, required: true},
   country: {type: String, required: true},
