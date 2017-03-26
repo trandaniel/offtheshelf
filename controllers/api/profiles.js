@@ -1,11 +1,14 @@
+
 var Profile = require('../../app/models/profile') ;
 var router = require('express').Router() ;
 var mongoose = require('mongoose') ;
 var ObjectID = mongoose.Types.ObjectId ;
 
-
+var methodOverride = require('method-override');
+router.use(methodOverride('_method'));
 // get profile
 router.get('/', function(req, res, nxt) {
+  console.log("getting");
   Profile.find().exec(function(err, profiles) {
     if(err) {
       return nxt(err) ;
@@ -24,8 +27,38 @@ router.get('/:id', function(req, res, nxt) {
   }) ;
 }) ;
 
+router.put('/', function(req, res, nxt) {
+  res.send("Put Request");
+  console.log(req.body);
+  var newname = chooseentry(req.body.name, req.body.editname);
+  var newemail = chooseentry(req.body.email, req.body.editemail);
+  var newpassword = chooseentry(req.body.currentpass, req.body.newpass);
+  var newstreetnumber = chooseentry(req.body.streetnum, req.body.editstreetnum);
+  var newstreetname = chooseentry(req.body.streetname, req.body.editstreetname);
+  var newcountry = chooseentry(req.body.country, req.body.editcountry);
+  var newcity = chooseentry(req.body.city, req.body.editcity);
+  //console.log(name, email, password, streetnumber, streetname, country, city);
+
+  Profile.findOneAndUpdate({ email: req.body.email }, { "$set": { "name": newname, email: newemail,
+  password: newpassword, 'location.streetnumber': newstreetnumber,
+  'location.street': newstreetname, 'location.country': newcountry, 'location.city': newcity}}, {new:true}, function(err, profile){
+   console.log(err);
+   console.log(profile);
+  });
+});
+
+function chooseentry(stringA, stringB) {
+  //console.log(stringA, stringB);
+  if (stringB == "" || stringB == undefined) {
+    return stringA;
+  }
+  else {
+    return stringB;
+  }
+}
+
 // add profile
-router.post('/', function(req, res, nxt) {
+router.post('/:email', function(req, res, nxt) {
 
   var profile = new Profile({
     name: req.body.name,
@@ -41,14 +74,7 @@ router.post('/', function(req, res, nxt) {
   },{
     versionKey: false
   }) ;
-  //console.log(mongoose.db);
-  /*mongoose.collection("profiles").insertOne(profile, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new contact.");
-    } else {
-      res.status(201).json(doc.ops[0]);
-    }
-  });*/
+
   profile.save(function(err, msg) {
     if(err) {
       return nxt(err) ;

@@ -51,11 +51,11 @@ function checkCreds() {
   if (dataloaded == true) {
     console.log("dataloaded");
     for (var index = 0 ; index < profiles.length ; index++) {
-      console.log(profiles[index].email);
-      console.log(profiles[index].password);
+
+      console.log();
       if (user == profiles[index].email.toString() && pass == profiles[index].password.toString()) {
         console.log("login!");
-        sessionStorage.name = profiles[index].name.toString();
+        setStorage(profiles[index]);
         changeloginUI();
         document.getElementById('displayusername').innerHTML = profiles[index].name;
         document.getElementById('loginerror').style.display = "none";
@@ -71,6 +71,17 @@ function checkCreds() {
   else {
     setTimeout(checkCreds, 500);
   }
+}
+
+function setStorage(profile) {
+  sessionStorage.name = profile.name.toString();
+  sessionStorage.streetnumber = (profile.location.streetnumber);
+  sessionStorage.street = profile.location.street;
+  sessionStorage.country = profile.location.country;
+  sessionStorage.city = profile.location.city;
+  sessionStorage.lat = profile.location.lat;
+  sessionStorage.lng = profile.location.lng;
+  sessionStorage.user = profile.email;
 }
 
 function changeloginUI() {
@@ -91,6 +102,7 @@ function logout() {
   sessionStorage.login = undefined;
   sessionStorage.user = undefined;
   sessionStorage.name = undefined;
+  sessionStorage.location = undefined;
   document.getElementById('username').style.display = "inline-block";
   document.getElementById('pass').style.display = "inline-block";
   document.getElementById('signinbutton').style.display = "inline-block";
