@@ -1,4 +1,3 @@
-
 var Profile = require('../../app/models/profile') ;
 var router = require('express').Router() ;
 var mongoose = require('mongoose') ;

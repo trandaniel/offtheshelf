@@ -18,7 +18,9 @@ router.post('/', function(req, res, nxt) {
     cost: req.body.cost,
     stock: req.body.stock,
     sellBy: req.body.sellBy,
-    posted: req.body.posted
+    //posted: req.body.posted
+  },{
+      versionKey: false
   }) ;
   product.save(function(err, msg) {
     if(err) {
