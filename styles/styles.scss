@@ -4,7 +4,20 @@
 $break-med: 768px ;
 $break-sm: 684px ;
 
+#displayInfo {
 
+}
+.innerTitle {
+  display: inline;
+  padding-right: 10px;
+}
+.innerInfo {
+  border: 2px solid grey;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+}
 .currentInfo {
   color: grey;
   display: inline-flex;

@@ -27,9 +27,12 @@ router.get('/:id', function(req, res, nxt) {
   }) ;
 }) ;
 
+/*
+  Function called on PUT request during form submission.
+  All information is in form (req.body), including currents.
+*/
 router.put('/', function(req, res, nxt) {
   res.send("Put Request");
-  console.log(req.body);
   var newname = chooseentry(req.body.name, req.body.editname);
   var newemail = chooseentry(req.body.email, req.body.editemail);
   var newpassword = chooseentry(req.body.currentpass, req.body.newpass);
@@ -37,8 +40,8 @@ router.put('/', function(req, res, nxt) {
   var newstreetname = chooseentry(req.body.streetname, req.body.editstreetname);
   var newcountry = chooseentry(req.body.country, req.body.editcountry);
   var newcity = chooseentry(req.body.city, req.body.editcity);
-  //console.log(name, email, password, streetnumber, streetname, country, city);
 
+  //Updating document
   Profile.findOneAndUpdate({ email: req.body.email }, { "$set": { "name": newname, email: newemail,
   password: newpassword, 'location.streetnumber': newstreetnumber,
   'location.street': newstreetname, 'location.country': newcountry, 'location.city': newcity}}, {new:true}, function(err, profile){
@@ -47,8 +50,10 @@ router.put('/', function(req, res, nxt) {
   });
 });
 
+/*
+  Check if field submitted was empty.
+*/
 function chooseentry(stringA, stringB) {
-  //console.log(stringA, stringB);
   if (stringB == "" || stringB == undefined) {
     return stringA;
   }
@@ -57,7 +62,7 @@ function chooseentry(stringA, stringB) {
   }
 }
 
-// add profile
+// add profile, triggered on POST request
 router.post('/:email', function(req, res, nxt) {
 
   var profile = new Profile({
