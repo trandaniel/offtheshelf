@@ -1,5 +1,7 @@
 var Product = require('../../app/models/product') ;
+var Profile = require('../../app/models/profile') ;
 var router = require('express').Router() ;
+
 
 // get products
 router.get('/', function(req, res, nxt) {
@@ -13,6 +15,7 @@ router.get('/', function(req, res, nxt) {
 
 // add product
 router.post('/', function(req, res, nxt) {
+  //var currentProductList;
   var date = new Date() ;
   var product = new Product({
     name: req.body.name,
@@ -27,8 +30,21 @@ router.post('/', function(req, res, nxt) {
     if(err) {
       return nxt(err) ;
     }
-    res.json(201, msg) ;
-    res.redirect(201, '../../productlist') ;
-  }) ;
+    var currentProductList = [];
+    Profile.findOne({email: req.body.email}, function(err, profile) {
+      if(err) {
+        return nxt(err) ;
+      }
+      if (profile.prodIds != null || profile.prodIds != undefined) {
+        currentProductList = profile.prodIds;
+      }
+      currentProductList.push((msg._id).toString());
+    }) ;
+    Profile.findOneAndUpdate({email: req.body.email}, {"$push": {"prodIds": msg._id}}, {new:true}, function(err, profile){
+     console.log(err);
+     res.redirect(201, '../../addProduct');
+    });
+  });
+
 }) ;
 module.exports = router ;

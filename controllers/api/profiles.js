@@ -45,7 +45,6 @@ router.put('/', function(req, res, nxt) {
   password: newpassword, 'location.streetnumber': newstreetnumber,
   'location.street': newstreetname, 'location.country': newcountry, 'location.city': newcity}}, {new:true}, function(err, profile){
    console.log(err);
-   console.log(profile);
   });
 });
 
