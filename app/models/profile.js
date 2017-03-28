@@ -17,7 +17,8 @@ var profileSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  location: locationSchema
+  location: locationSchema,
+  prodIds: [String]
 },
 {
   versionKey: false

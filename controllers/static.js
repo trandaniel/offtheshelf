@@ -22,6 +22,10 @@ router.get('/addproduct', function(req, res) {
   res.sendfile('public/views/business/addProduct.html')
 }) ;
 
+router.get('/productlist', function(req, res) {
+  res.sendfile('public/views/business/prodList.html')
+}) ;
+
 router.use(express.static(__dirname + '/../assets')) ;
 
 module.exports = router ;

@@ -13,12 +13,13 @@ router.get('/', function(req, res, nxt) {
 
 // add product
 router.post('/', function(req, res, nxt) {
+  var date = new Date() ;
   var product = new Product({
     name: req.body.name,
     cost: req.body.cost,
     stock: req.body.stock,
     sellBy: req.body.sellBy,
-    //posted: req.body.posted
+    posted: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
   },{
       versionKey: false
   }) ;
@@ -27,6 +28,7 @@ router.post('/', function(req, res, nxt) {
       return nxt(err) ;
     }
     res.json(201, msg) ;
+    res.redirect(201, '../../productlist') ;
   }) ;
 }) ;
 module.exports = router ;

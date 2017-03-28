@@ -62,7 +62,7 @@ function chooseentry(stringA, stringB) {
 }
 
 // add profile, triggered on POST request
-router.post('/:email', function(req, res, nxt) {
+router.post('/', function(req, res, nxt) {
 
   var profile = new Profile({
     name: req.body.name,

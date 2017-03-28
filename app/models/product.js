@@ -8,7 +8,7 @@ var productSchema = new mongoose.Schema({
   cost: {type: Number, required: true},
   stock: {type: Number, required: true},
   sellBy: {type: String, required: true},
-  //posted: {type: String, required: true}
+  posted: {type: String, required: true}
 }, {
   versionKey: false
 }) ;
