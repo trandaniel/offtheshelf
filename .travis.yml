@@ -8,6 +8,8 @@ node_js:
 before_install:
 	- npm update -g npm
 
+sudo: required
+
 after_script:
 	- npm run coverage
 
