@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css" charset="utf-8">
     <script type="text/javascript" src="product.js"></script>
   </head>
-  <body>
+  <body onload="setEmail()";>
     <div class="container-fluid">
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
@@ -31,6 +31,7 @@
       <br>
       <h1>Add a new product you wish to sell!</h1>
       <form class="addProd" action="/api/products" method="POST">
+        <input type="text" name="email" id="emailsubmit" value="" style="display: none" readonly>
         Product name: <input type="text" class="form-control textInput" name="name" value="">
         Product cost: <input type="text" class="form-control textInput" name="cost" value="">
         Stock: <input type="text" class="form-control textInput" name="stock" value="">
