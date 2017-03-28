@@ -94,8 +94,6 @@ function setStorage(profile) {
 
 function changeloginUI() {
   sessionStorage.login = true;
-  sessionStorage.user = user;
-  console.log(sessionStorage.name);
   document.getElementById('displayusername').innerHTML = sessionStorage.name;
   document.getElementById('username').style.display = "none";
   document.getElementById('pass').style.display = "none";
