@@ -90,6 +90,11 @@ form {
   }
 }
 
+.navbar-brand {
+  > img {
+    width: 30px ;
+  }
+}
 .container {
   font-family: 'Montserrat', sans-serif;
   text-align: center ;
@@ -134,5 +139,9 @@ form {
 
   > div {
     font-size: 20px ;
+  }
+
+  > img {
+    width: 50% ;
   }
 }

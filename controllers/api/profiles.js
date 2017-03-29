@@ -77,6 +77,7 @@ router.post('/', function(req, res, nxt) {
     versionKey: false
   }) ;
 
+  // set password using hash and salt in profile model
   profile.setPassword(req.body.password) ;
 
   profile.save(function(err, msg) {
