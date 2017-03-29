@@ -5,6 +5,7 @@ var crypto = require('crypto') ;
 
 //variable required to dictate how JSON object will look
 var locationSchema = new mongoose.Schema({
+  streetnumber: {type: String, required: true},
   street: {type: String, required: true},
   country: {type: String, required: true},
   city: {type: String, required: true},
