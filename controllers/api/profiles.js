@@ -66,7 +66,6 @@ router.post('/', function(req, res, nxt) {
   var profile = new Profile({
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
     location: {
       street: req.body.street,
       country: req.body.country,
@@ -77,6 +76,8 @@ router.post('/', function(req, res, nxt) {
   },{
     versionKey: false
   }) ;
+
+  profile.setPassword(req.body.password) ;
 
   profile.save(function(err, msg) {
     if(err) {

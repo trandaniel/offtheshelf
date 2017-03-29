@@ -1,6 +1,7 @@
-// import db
+// import db and modules
 var db = require('../../config/db') ;
 var mongoose = require('mongoose') ;
+var crypto = require('crypto') ;
 
 //variable required to dictate how JSON object will look
 var locationSchema = new mongoose.Schema({
@@ -16,7 +17,8 @@ var locationSchema = new mongoose.Schema({
 var profileSchema = new mongoose.Schema({
   name: String,
   email: String,
-  password: String,
+  hash: String,
+  salt: String,
   location: locationSchema,
   prodIds: [String]
 },
@@ -24,6 +26,15 @@ var profileSchema = new mongoose.Schema({
   versionKey: false
 });
 
+profileSchema.methods.setPassword = function(password) {
+  this.salt = crypto.randomBytes(16).toString('hex') ;
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex') ;
+} ;
+
+profileSchema.methods.validPassword = function(password) {
+  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex') ;
+  return hash === this.hash ;
+}
 
 var Profile = mongoose.model('Profile', profileSchema);
 
