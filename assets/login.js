@@ -1,5 +1,5 @@
 var dataloaded = false;
-var profiles;
+var profile;
 var user; //email
 var pass;
 
@@ -12,13 +12,56 @@ function checkLoggedIn() {
   console.log(sessionStorage.user);
   console.log(sessionStorage.name);
   if (sessionStorage.login == "true") {
-    console.log("adsf");
+    console.log("adsf login");
     changeloginUI();
     //document.getElementById('displayusername').innerHTML = sessionStorage.user;
   }
   else {
+    console.log("aaaaaaa");
     console.log("no session");
   }
+}
+
+function urlencodeFormData(fd){
+    var s = '';
+    function encode(s){ return encodeURIComponent(s).replace(/%20/g,'+'); }
+    for(var pair of fd.entries()){
+        if(typeof pair[1]=='string'){
+            s += (s?'&':'') + encode(pair[0])+'='+encode(pair[1]);
+        }
+    }
+    return s;
+}
+
+function xhrLogin(e) {
+  e.preventDefault();
+  console.log("fuck");
+  var params = new FormData(document.forms["loginform"]);
+  var xhr = new XMLHttpRequest();
+  //var rootweb = "http://" + window.location.hostname + ":" + window.location.port + "/api/login/:email";
+  var profiles;
+  //console.log();
+  xhr.open('POST', "/api/profiles/:email"  , true);
+  xhr.onreadystatechange = function() {
+    if (this.status == 200) {
+      console.log("hello");
+      if (this.readyState == 4) {
+        //console.log(xhr.responseText);
+        profile = JSON.parse(xhr.responseText);
+        setStorage(profile);
+        changeloginUI();
+        //console.log(sessionStorage);
+      }
+
+    }
+    else {
+      console.log("waiting");
+    }
+  }
+  //alert(rootweb);
+  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+  xhr.send(urlencodeFormData(params));
+
 }
 
 function login(e) {
@@ -82,6 +125,8 @@ function checkCreds() {
   For session information storage
 */
 function setStorage(profile) {
+  console.log("setting");
+  console.log(profile.name, profile.location.street);
   sessionStorage.name = profile.name.toString();
   sessionStorage.streetnumber = (profile.location.streetnumber);
   sessionStorage.street = profile.location.street;
@@ -90,6 +135,7 @@ function setStorage(profile) {
   sessionStorage.lat = profile.location.lat;
   sessionStorage.lng = profile.location.lng;
   sessionStorage.user = profile.email;
+  console.log(sessionStorage);
 }
 
 function changeloginUI() {

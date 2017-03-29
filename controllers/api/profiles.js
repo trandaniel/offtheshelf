@@ -1,10 +1,12 @@
 var Profile = require('../../app/models/profile') ;
 var router = require('express').Router() ;
 var mongoose = require('mongoose') ;
+var bodyParser     = require('body-parser') ;
 var ObjectID = mongoose.Types.ObjectId ;
 
 var methodOverride = require('method-override');
 router.use(methodOverride('_method'));
+
 // get profile
 router.get('/', function(req, res, nxt) {
   console.log("getting");
@@ -17,13 +19,21 @@ router.get('/', function(req, res, nxt) {
 }) ;
 
 // get single profile by objID
-router.get('/:id', function(req, res, nxt) {
-  Profile.findOne({_id: new ObjectID(req.params.id)}, function(err, msg) {
-    if(err) {
-      return nxt(err) ;
+router.post('/:email', function(req, res, nxt) {
+  Profile.findOne({email: req.body.email}, function(err, profile) {
+    if (err) {
+      res.send("login failed");
     }
-    res.json(201, msg) ;
-  }) ;
+    else {
+      if (profile.validPassword(req.body.password)) {
+        var info = { 'email': profile.email, 'name': profile.name, 'location': profile.location}
+        res.send(info);
+      }
+      else {
+        res.send("invalid username/password");
+      }
+    }
+  });
 }) ;
 
 /*

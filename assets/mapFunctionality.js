@@ -132,3 +132,7 @@ function stopCurrentAnimations() {
     markers[i].setAnimation(null);
   }
 }
+
+function reverseGeo() {
+  
+}
