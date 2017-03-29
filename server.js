@@ -4,7 +4,7 @@ var app            = express();
 var mongoose       = require('mongoose') ;
 var bodyParser     = require('body-parser') ;
 var methodOverride = require('method-override') ;
-
+var passport       = require('passport') ;
 // config files ============================================================
 
 // port=====================================================================
@@ -20,8 +20,12 @@ app.use('/api/profiles', require('./controllers/api/profiles')) ;
 app.use('/api/products', require('./controllers/api/products')) ;
 app.use(express.static(__dirname + '/public'));
 
+app.use(passport.initialize()) ;
+app.use(passport.session()) ;
+
 // routes===================================================================
 app.use(require('./controllers/static')) ;
+app.use(require('./controllers/login')) ;
 
 app.listen(port, function() {
     console.log('Listening on port: ' + port);
