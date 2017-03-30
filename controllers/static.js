@@ -3,6 +3,7 @@ var router  = express.Router() ;
 
 // routes for pages
 router.get('/', function(req, res) {
+  //console.log(req.session.pid) ;
   res.sendfile('public/views/index.html') ;
 }) ;
 

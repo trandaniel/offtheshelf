@@ -26,6 +26,8 @@ app.use(methodOverride('X-HTTP-Method-Override')) ;
 // init session ============================================================
 app.use(expressSession({
   secret: process.env.secretWords,
+  resave: false,
+  saveUninitialized: false,
   cookie: {}
 })) ;
 

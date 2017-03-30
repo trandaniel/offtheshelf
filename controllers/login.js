@@ -10,6 +10,8 @@ router.post('/', function(req, res, nxt) {
       if(profile.validPassword(req.body.password)) {
         var info = { 'email': profile.email, 'name': profile.name, 'location': profile.location} ;
         var session = req.session ;
+        session.pid = 'null' ;
+        console.log(session.pid) ;
         session.pid = profile._id ;
         console.log(session.pid) ;
         res.redirect("../") ;

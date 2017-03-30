@@ -2,6 +2,7 @@ var mongoose = require('mongoose') ;
 
 var mongo_URI = process.env.mongo_URI;
 
+mongoose.Promise = global.Promise ;
 if (mongo_URI)
   mongoose.connect(mongo_URI, function(err, database) {
     if(err) {
@@ -12,5 +13,3 @@ if (mongo_URI)
   }) ;
 
 module.exports = mongoose ;
-
-console.log(mongoose);
