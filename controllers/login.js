@@ -2,7 +2,6 @@ var Profile        = require('../app/models/profile') ;
 var router         = require('express').Router() ;
 var expressSession = require('express-session') ;
 
-
 router.post('/', function(req, res, nxt) {
   Profile.findOne({email: req.body.email}, function(err, profile) {
     if(err) {
