@@ -1,6 +1,5 @@
 var Profile        = require('../app/models/profile') ;
 var router         = require('express').Router() ;
-var expressSession = require('express-session') ;
 
 router.post('/', function(req, res, nxt) {
   Profile.findOne({email: req.body.email}, function(err, profile) {
@@ -13,10 +12,11 @@ router.post('/', function(req, res, nxt) {
         var session = req.session ;
         session.pid = profile._id ;
         console.log(session.pid) ;
-        res.send(info) ;
+        res.redirect("../") ;
       }
       else {
-        res.send('invalid password') ;
+        console.log('invalid password') ;
+        res.redirect("../") ;
       }
     }
   }) ;

@@ -35,9 +35,9 @@ app.use('/api/products', require('./controllers/api/products')) ;
 app.use(express.static(__dirname + '/public'), require('./controllers/static'));
 
 // routes===================================================================
-// app.use(require('./controllers/static')) ;
 app.use('/login', require('./controllers/login')) ;
-
+app.use('/logout', require('./controllers/logout')) ;
+app.use('/register', require('./controllers/register')) ;
 
 app.listen(port, function() {
     console.log('Listening on port: ' + port);

@@ -95,7 +95,7 @@ router.post('/', function(req, res, nxt) {
       return nxt(err) ;
     }
     //res.json(201, msg) ;
-    res.redirect(201, '../../confirm');
+    res.redirect('../../confirm');
   }) ;
 }) ;
 
