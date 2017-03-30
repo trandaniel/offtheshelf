@@ -8,6 +8,11 @@ $break-sm: 684px ;
 
 }
 
+#loggedIndisplay {
+  padding-top: 10px;
+  display: inline-flex;
+}
+
 .innerTitle {
   display: inline;
   padding-right: 10px;
@@ -47,7 +52,6 @@ $break-sm: 684px ;
   color: white;
   padding-right: 50px;
   display: none;
-  padding-top: 10px;
   font-family: 'Montserrat', sans-serif;
 }
 

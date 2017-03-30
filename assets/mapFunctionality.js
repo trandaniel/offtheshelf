@@ -91,10 +91,11 @@ function getLocations() {
 function setMarkers() {
   var latlng;
   var infoOutput = "";
+  console.log(locations);
   for (var p = 0 ; p < locations.length && p < labels.length ; p++) {
     var mark = locations[p];
     latlng = {lat: parseFloat(mark.location.lat), lng: parseFloat(mark.location.lng)};
-    console.log(latlng);
+    console.log(mark.location.lat, mark.location.lng);
     console.log(labels.charAt(p), typeof labels.charAt(p));
     var marker = new google.maps.Marker({
         position: latlng,
@@ -113,9 +114,10 @@ function setMarkers() {
   Populates area where business information displayed.
 */
 function setoutput(mark, index) {
-  console.log(mark.location);
+  console.log("getting display information", mark);
   var address = "<h4>" + mark.location.streetnumber + " " + mark.location.street + "</h4><p>" + mark.location.city + ", " + mark.location.country + "</p>";
   var title = "<div><h2 class=\"innerTitle\">" + labels.charAt(index) + "</h2>" + "<h3 class=\"innerTitle\">" + mark.name + "</h3></div>";
+  console.log("<div class=\"innerInfo\" onclick=\"highlightMarker(this.innerHTML)\">" + title + address + "</div>");
   return "<div class=\"innerInfo\" onclick=\"highlightMarker(this.innerHTML)\">" + title + address + "</div>";
 }
 
