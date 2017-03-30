@@ -1,6 +1,5 @@
 var express = require('express') ;
 var router  = express.Router() ;
-var passport = require('passport') ;
 
 // routes for pages
 router.get('/', function(req, res) {
@@ -26,16 +25,6 @@ router.get('/addproduct', function(req, res) {
 router.get('/productlist', function(req, res) {
   res.sendfile('public/views/business/prodList.html')
 }) ;
-
-router.post('/login', passport.authenticate('local', {
-  failureRedirect: 'login',
-  failureFlash: true
-}),
-  function(req, res) {
-    console.log('logged in') ;
-    res.redirect('/') ;
-  }
-) ;
 
 router.use(express.static(__dirname + '/../assets')) ;
 

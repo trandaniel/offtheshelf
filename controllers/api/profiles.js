@@ -1,8 +1,8 @@
-var Profile = require('../../app/models/profile') ;
-var router = require('express').Router() ;
-var mongoose = require('mongoose') ;
+var Profile        = require('../../app/models/profile') ;
+var router         = require('express').Router() ;
+var mongoose       = require('mongoose') ;
 var bodyParser     = require('body-parser') ;
-var ObjectID = mongoose.Types.ObjectId ;
+var ObjectID       = mongoose.Types.ObjectId ;
 
 var methodOverride = require('method-override');
 router.use(methodOverride('_method'));

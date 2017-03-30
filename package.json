@@ -41,6 +41,7 @@
     "client-sessions": "^0.7.0",
     "crypto": "0.0.3",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-ng-annotate": "^2.0.0",

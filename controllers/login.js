@@ -1,29 +1,26 @@
-var Profile = require('../app/models/profile') ;
-var router = require('express').Router() ;
-var passport = require('passport') ;
-var LocalStrategy = require('passport-local').Strategy ;
+var Profile        = require('../app/models/profile') ;
+var router         = require('express').Router() ;
+var expressSession = require('express-session') ;
 
-passport.use(new LocalStrategy ({
-    usernameField: 'email',
-    passwordField: 'password'
-  },
-  function(email, password, done) {
-    Profile.findOne({email: email}, function(err, email) {
-      if(err) {
-        return done(err) ;
+
+router.post('/', function(req, res, nxt) {
+  Profile.findOne({email: req.body.email}, function(err, profile) {
+    if(err) {
+      res.send("Login failed") ;
+    }
+    else {
+      if(profile.validPassword(req.body.password)) {
+        var info = { 'email': profile.email, 'name': profile.name, 'location': profile.location} ;
+        var session = req.session ;
+        session.pid = profile._id ;
+        console.log(session.pid) ;
+        res.send(info) ;
       }
-      if(!email) {
-        return done(null, false, {
-          message: 'Incorrect email.'
-        }) ;
+      else {
+        res.send('invalid password') ;
       }
-      if(!email.validPassword(password)) {
-        return done(null, false, {
-          message: 'Incorrect password.'
-        }) ;
-      }
-    }) ;
-  }
-)) ;
+    }
+  }) ;
+}) ;
 
 module.exports = router ;

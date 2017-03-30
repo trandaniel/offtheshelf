@@ -39,7 +39,7 @@ function initMap() {
       myloc.setPosition(pos);
       //geomarker = new GeolocationMarker(map);
       map.setCenter(pos);
-      GeoMarker = new GeolocationMarker(map);
+      // GeoMarker = new GeolocationMarker(map);
       console.log("Map set");
       //getLocations();
     }, function() {
@@ -134,5 +134,5 @@ function stopCurrentAnimations() {
 }
 
 function reverseGeo() {
-  
+
 }

@@ -2,8 +2,6 @@ var mongoose = require('mongoose') ;
 
 var mongo_URI = process.env.mongo_URI;
 
-
-
 if (mongo_URI)
   mongoose.connect(mongo_URI, function(err, database) {
     if(err) {
