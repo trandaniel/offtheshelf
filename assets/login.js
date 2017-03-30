@@ -50,7 +50,6 @@ function xhrLogin(e) {
         profile = JSON.parse(xhr.responseText);
         setStorage(profile);
         changeloginUI();
-        //console.log(sessionStorage);
       }
 
     }

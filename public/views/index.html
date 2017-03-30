@@ -11,14 +11,13 @@
 <body onload="checkLoggedIn()">
   <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-header">
+      <div class="navbar-header ">
         <a class="navbar-brand" href="#">
           <img src="img/logo.png" alt="carolynpls">
         </a>
       </div>
 
-      <form class="navbar-form navbar-right" id="loginform" method="POST" action="login">
-       <!-- onsubmit="xhrLogin(event)"> -->
+      <form class="navbar-form navbar-right" id="loginform" method="POST" action="login" onsubmit="xhrLogin(event)">
         <div class="form-group">
           <input type="text" class="form-control" name="email" id="username" placeholder="Username">
           <input type="password" class="form-control" name="password" id="pass" placeholder="Password">
@@ -29,9 +28,9 @@
           Incorrect username or password!
         </div>
       </form>
-      <div class="navbar-right">
+      <div class="navbar-right" id= "loggedIndisplay">
         <a href="editProfile" id="displayusername"></a>
-        <form class="" action="logout" method="POST">
+        <form class="" action="logout" method="POST" onsubmit = "logout()";>
           <button class="btn btn-default" type="submit" name="button" id="logoutbutton">Log Out</button>
         </form>
       </div>
