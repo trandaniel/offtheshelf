@@ -41,7 +41,7 @@ function xhrLogin(e) {
   //var rootweb = "http://" + window.location.hostname + ":" + window.location.port + "/api/login/:email";
   var profiles;
   //console.log();
-  xhr.open('POST', "/api/profiles/:email"  , true);
+  xhr.open('POST', "login"  , true);
   xhr.onreadystatechange = function() {
     if (this.status == 200) {
       console.log("hello");
