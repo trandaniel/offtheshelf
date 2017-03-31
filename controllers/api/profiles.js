@@ -1,8 +1,6 @@
 var Profile        = require('../../app/models/profile') ;
 var router         = require('express').Router() ;
-var mongoose       = require('mongoose') ;
 var bodyParser     = require('body-parser') ;
-var ObjectID       = mongoose.Types.ObjectId ;
 
 var methodOverride = require('method-override');
 router.use(methodOverride('_method'));
@@ -40,23 +38,23 @@ router.post('/:email', function(req, res, nxt) {
   Function called on PUT request during form submission.
   All information is in form (req.body), including currents.
 */
-router.put('/', function(req, res, nxt) {
-  res.send("Put Request");
-  var newname = chooseentry(req.body.name, req.body.editname);
-  var newemail = chooseentry(req.body.email, req.body.editemail);
-  var newpassword = chooseentry(req.body.currentpass, req.body.newpass);
-  var newstreetnumber = chooseentry(req.body.streetnum, req.body.editstreetnum);
-  var newstreetname = chooseentry(req.body.streetname, req.body.editstreetname);
-  var newcountry = chooseentry(req.body.country, req.body.editcountry);
-  var newcity = chooseentry(req.body.city, req.body.editcity);
-
-  //Updating document
-  Profile.findOneAndUpdate({ email: req.body.email }, { "$set": { "name": newname, email: newemail,
-  password: newpassword, 'location.streetnumber': newstreetnumber,
-  'location.street': newstreetname, 'location.country': newcountry, 'location.city': newcity}}, {new:true}, function(err, profile){
-   console.log(err);
-  });
-});
+// router.put('/', function(req, res, nxt) {
+//   res.send("Put Request");
+//   var newname = chooseentry(req.body.name, req.body.editname);
+//   var newemail = chooseentry(req.body.email, req.body.editemail);
+//   var newpassword = chooseentry(req.body.currentpass, req.body.newpass);
+//   var newstreetnumber = chooseentry(req.body.streetnum, req.body.editstreetnum);
+//   var newstreetname = chooseentry(req.body.streetname, req.body.editstreetname);
+//   var newcountry = chooseentry(req.body.country, req.body.editcountry);
+//   var newcity = chooseentry(req.body.city, req.body.editcity);
+//
+//   //Updating document
+//   Profile.findOneAndUpdate({ email: req.body.email }, { "$set": { "name": newname, email: newemail,
+//   password: newpassword, 'location.streetnumber': newstreetnumber,
+//   'location.street': newstreetname, 'location.country': newcountry, 'location.city': newcity}}, {new:true}, function(err, profile){
+//    console.log(err);
+//   });
+// });
 
 /*
   Check if field submitted was empty.

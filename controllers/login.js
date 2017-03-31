@@ -14,7 +14,8 @@ router.post('/', function(req, res, nxt) {
         console.log(session.pid) ;
         session.pid = profile._id ;
         console.log(session.pid) ;
-        res.send(info); ;
+        // res.send(info);
+        res.redirect('../') ;
       }
       else {
         console.log('invalid password') ;

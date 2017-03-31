@@ -8,7 +8,7 @@
     <script type="text/javascript" src="editProfile.js"></script>
     <script src="login.js" charset="utf-8"></script>
   </head>
-  <body onload="setCurrents()">
+  <body>
     <div class="container-fluid">
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
@@ -34,7 +34,8 @@
         Name: <input type="text" class="currentInfo" id = "currentName" name="name" readonly></input>
         <input type="text" class="form-control textInput" name="editname" placeholder="New name">
 
-        Email: <input type="text" class="currentInfo" id = "currentEmail" name="email" readonly></input>
+        Email: <%= user %>
+        <!-- Email: <input type="text" class="currentInfo" id = "currentEmail" name="email" readonly></input> -->
         <input type="text" class="form-control textInput" name="editemail" placeholder="New email">
 
         Password:

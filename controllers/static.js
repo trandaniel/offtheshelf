@@ -16,7 +16,8 @@ router.get('/confirm', function(req, res) {
 }) ;
 
 router.get('/editprofile', function(req, res) {
-  res.sendfile('public/views/business/editProfile.html')
+  res.render('editProfile', {user: req.session.pid}) ;
+  //res.sendfile('public/views/business/editProfile.html')
 }) ;
 
 router.get('/addproduct', function(req, res) {
