@@ -7,14 +7,19 @@ router.post('/', function(req, res, nxt) {
       res.send("Login failed") ;
     }
     else {
+      //console.log(profile) ;
+      //console.log(req.body.password) ;
       if(profile.validPassword(req.body.password)) {
-        var info = { 'email': profile.email, 'name': profile.name, 'location': profile.location} ;
+        var info = {
+          id:       profile._id,
+          name:     profile.name,
+          email:    profile.email,
+          location: profile.location,
+          prodIds:  profile.prodIds
+        } ;
         var session = req.session ;
-        session.pid = 'null' ;
-        console.log(session.pid) ;
-        session.pid = profile._id ;
-        console.log(session.pid) ;
-        // res.send(info);
+        //store session with profile object excluding hash and salt
+        session.profile = info ;
         res.redirect('../') ;
       }
       else {

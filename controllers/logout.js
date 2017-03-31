@@ -1,8 +1,8 @@
-var router         = require('express').Router() ;
+var router = require('express').Router() ;
 
 router.post('/', function(req, res, nxt) {
   var session = req.session ;
-  session.pid = '' ;
+  session.profile = undefined ;
   res.redirect("../") ;
   res.sendfile("public/views/index.html") ;
 }) ;

@@ -4,13 +4,9 @@
 $break-med: 768px ;
 $break-sm: 684px ;
 
-.nondisplay {
-  display: none;
-}
-
-#displayInfo {
-
-}
+// .nondisplay {
+//   display: none;
+// }
 
 #loggedIndisplay {
   padding-top: 10px;
@@ -46,7 +42,7 @@ $break-sm: 684px ;
 }
 
 #logoutbutton {
-  display: none;
+  // display: none;
   padding-top: 5px;
 }
 
@@ -55,7 +51,6 @@ $break-sm: 684px ;
   font-style: italic;
   color: white;
   padding-right: 50px;
-  display: none;
   font-family: 'Montserrat', sans-serif;
 }
 

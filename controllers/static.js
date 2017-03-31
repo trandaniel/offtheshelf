@@ -4,7 +4,8 @@ var router  = express.Router() ;
 // routes for pages
 router.get('/', function(req, res) {
   //console.log(req.session.pid) ;
-  res.sendfile('public/views/index.html') ;
+  console.log(req.session.profile) ;
+  res.render('index', {profile: req.session.profile}) ;
 }) ;
 
 router.get('/signup', function(req, res) {
@@ -16,7 +17,13 @@ router.get('/confirm', function(req, res) {
 }) ;
 
 router.get('/editprofile', function(req, res) {
-  res.render('editProfile', {user: req.session.pid}) ;
+  if(!req.session.profile) {
+    console.log('no login') ;
+    res.render('index') ;
+  }
+  else {
+    res.render('editProfile', {profile: req.session.profile}) ;
+  }
   //res.sendfile('public/views/business/editProfile.html')
 }) ;
 
