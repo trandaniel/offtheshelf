@@ -14,11 +14,11 @@ router.post('/', function(req, res, nxt) {
         console.log(session.pid) ;
         session.pid = profile._id ;
         console.log(session.pid) ;
-        res.redirect("../") ;
+        res.send(info); ;
       }
       else {
         console.log('invalid password') ;
-        res.redirect("../") ;
+        res.send("invalid password");
       }
     }
   }) ;

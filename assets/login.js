@@ -43,15 +43,18 @@ function xhrLogin(e) {
   //console.log();
   xhr.open('POST', "login"  , true);
   xhr.onreadystatechange = function() {
+    console.log(this.status);
     if (this.status == 200) {
-      console.log("hello");
       if (this.readyState == 4) {
-        //console.log(xhr.responseText);
-        profile = JSON.parse(xhr.responseText);
-        setStorage(profile);
-        changeloginUI();
+        if (xhr.responseText == 'invalid password') {
+          document.getElementById('loginerror').style.display = "block";
+        }
+        else {
+          profile = JSON.parse(xhr.responseText);
+          setStorage(profile);
+          changeloginUI();
+        }
       }
-
     }
     else {
       console.log("waiting");
@@ -60,7 +63,6 @@ function xhrLogin(e) {
   //alert(rootweb);
   xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
   xhr.send(urlencodeFormData(params));
-
 }
 
 function login(e) {
@@ -138,6 +140,7 @@ function setStorage(profile) {
 }
 
 function changeloginUI() {
+  document.getElementById('loginerror').style.display = "none";
   sessionStorage.login = true;
   document.getElementById('displayusername').innerHTML = sessionStorage.name;
   document.getElementById('username').style.display = "none";

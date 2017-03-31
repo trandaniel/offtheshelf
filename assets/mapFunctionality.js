@@ -1,18 +1,17 @@
 var map;
 var currentPos = [];
 var geomarker;
+var geocoder = new google.maps.Geocoder;
 var locations;
 var markers = [];
 var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-var GeoMarker
 function initMap() {
   console.log("initiating map");
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
     zoom: 15
-  });
-  geocoder = new google.maps.Geocoder;
+  })
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -133,8 +132,4 @@ function stopCurrentAnimations() {
   for (var i = 0 ; i < markers.length ; i ++) {
     markers[i].setAnimation(null);
   }
-}
-
-function reverseGeo() {
-
 }
