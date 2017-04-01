@@ -54,10 +54,15 @@ router.get('/addproduct', function(req, res) {
 
 router.get('/productlist', function(req, res) {
   if(!req.session.profile) {
+    console.log('hello who are u') ;
     res.redirect('../autherr') ;
   }
+  if(!req.session.products) {
+    console.log('hello u dont have shit') ;
+    res.redirect('../prodlist') ;
+  }
   else {
-    res.render('pharm/prodlist', {profile: req.session.profile}) ;
+    res.render('pharm/prodlist', {profile: req.session.profile, products: req.session.products}) ;
   }
 }) ;
 
