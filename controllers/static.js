@@ -53,7 +53,12 @@ router.get('/addproduct', function(req, res) {
 }) ;
 
 router.get('/productlist', function(req, res) {
-  res.sendfile('public/views/business/prodList.html')
+  if(!req.session.profile) {
+    res.redirect('../autherr') ;
+  }
+  else {
+    res.render('pharm/prodlist', {profile: req.session.profile}) ;
+  }
 }) ;
 
 router.get('/autherr', function(req, res) {

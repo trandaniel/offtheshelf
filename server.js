@@ -34,8 +34,7 @@ session.profile = null ;
 
 app.set('view engine', 'ejs') ;
 // add controllers =========================================================
-app.use('/api/profiles', require('./controllers/api/profiles')) ;
-app.use('/api/products', require('./controllers/api/products')) ;
+
 app.use(express.static(__dirname + '/public'), require('./controllers/static'));
 
 // routes===================================================================
@@ -43,6 +42,8 @@ app.use('/login', require('./controllers/login')) ;
 app.use('/logout', require('./controllers/logout')) ;
 app.use('/register', require('./controllers/register')) ;
 app.use('/update', require('./controllers/update')) ;
+app.use('/addprod', require('./controllers/addprod')) ;
+
 app.listen(port, function() {
     console.log('Listening on port: ' + port);
 });
