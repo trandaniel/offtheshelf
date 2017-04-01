@@ -19,12 +19,12 @@ router.post('/', function(req, res, nxt) {
         } ;
         var session = req.session ;
         //store session with profile object excluding hash and salt
-        session.profile = info ;
+        req.session.profile = info ;
         res.redirect('../') ;
       }
       else {
         console.log('invalid password') ;
-        res.send("invalid password");
+        res.redirect("../") ;
       }
     }
   }) ;

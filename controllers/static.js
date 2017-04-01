@@ -11,6 +11,7 @@ router.get('/', function(req, res) {
 router.get('/index', function(req, res) {
   res.redirect('../') ;
 }) ;
+
 router.get('/signup', function(req, res) {
   if(!req.session.profile) {
     res.render('pharm/signup', {profile: req.session.profile}) ;
@@ -26,7 +27,8 @@ router.get('/confirm', function(req, res) {
     res.redirect('../') ;
   }
   else {
-    res.render('pharm/confirm', {profile: req.session.profile}) ;
+    req.session.signedup = undefined ;
+    res.redirect('../editprofile') ;
   }
 }) ;
 
@@ -38,15 +40,24 @@ router.get('/editprofile', function(req, res) {
   else {
     res.render('pharm/editProfile', {profile: req.session.profile}) ;
   }
-  //res.sendfile('public/views/business/editProfile.html')
 }) ;
 
 router.get('/addproduct', function(req, res) {
-  res.sendfile('public/views/business/addProduct.html')
+  if(!req.session.profile) {
+    console.log('you must be logged in u fuk') ;
+    res.redirect('../autherr') ;
+  }
+  else {
+    res.render('pharm/addProduct', {profile: req.session.profile}) ;
+  }
 }) ;
 
 router.get('/productlist', function(req, res) {
   res.sendfile('public/views/business/prodList.html')
+}) ;
+
+router.get('/autherr', function(req, res) {
+  res.render('error/autherr', {profile: req.session.profile}) ;
 }) ;
 
 router.use(express.static(__dirname + '/../assets')) ;
