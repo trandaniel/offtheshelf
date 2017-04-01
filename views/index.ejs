@@ -8,20 +8,7 @@
   <script type="text/javascript" src="mapFunctionality.js"></script>
 </head>
 <body>
-  <div class="container-fluid">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-header ">
-        <a class="navbar-brand" href="#">
-          <img src="img/logo.png" alt="carolynpls">
-        </a>
-      </div>
-      <% if(profile) { %>
-          <% include navbar/loggedin %>
-      <% } else { %>
-          <% include navbar/loggedout %>
-      <% } %>
-    </nav>
-  </div>
+  <% include navbar/nav %>
   <div class="container">
     <h1>"go to your javascript file" - sam</h1>
     <img src="img/blackfont.png" alt="pliscarol"> <br>

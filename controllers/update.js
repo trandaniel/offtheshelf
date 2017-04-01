@@ -12,11 +12,16 @@ router.post('/', function(req, res, nxt) {
   var newcity = chooseentry(sessionProfile.location.city, req.body.editcity);
 
   if(req.body.newpass) {
-    console.log('changing pw') ;
     Profile.findOne({ _id: sessionProfile.id}, function(err, profile) {
       if(profile.validPassword(req.body.currentpass)) {
         if(req.body.newpass === req.body.confirmpass) {
-          updatePass(req.body.newpass, sessionProfile.id) ;
+          var passwordChecker = req.body.newpass.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) ;
+          if(!(passwordChecker === -1)) {
+            updatePass(req.body.newpass, sessionProfile.id) ;
+          }
+          else {
+            console.log('password must contain at least 1 capital, 8 characters and digit') ;
+          }
         }
         else {
           console.log('password dont match') ;
@@ -69,8 +74,8 @@ function updatePass(password, id) {
     salt: salt,
     hash: hash
   }}, {new:true}, function(err, profile) {
-    if(err) {
-      return nxt(err) ;
+    if(err){
+      return err ;
     }
   }) ;
 }

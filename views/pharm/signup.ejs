@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" charset="utf-8">
+
+  </head>
+  <body>
+    <% include ../navbar/nav %>
+    <div class="container">
+      <form class="signup" action="register" method="POST" onload="initMap()">
+        Name: <input type="text" class="form-control textInput" name="name" placeholder="PharmaC" required>
+        Email: <input type="text" class="form-control textInput" name="email" placeholder="example@email.com" required>
+        Password: <input type="password" class="form-control textInput" name="password" value="" required>
+        Confirm Password: <input type="password" class="form-control textInput" name="confirmpass" value="" required><br>
+        Find your pharmacy on the map! <br>
+        <!-- MAP HERE TOGGLE BETWEEN MANUAL/MAP-->
+        <div class="" id="signupmap" onload="reverseGeo()"></div>
+        <div class="" id="reverseGeo"></div>
+        <br>
+        Or type in your address. <br> <br>
+        Street Number: <input type="text" class="form-control textInput" id="streetnumber" name="streetnumber" required>
+        Street Name: <input type="text" class="form-control textInput" id="route" name="street" required>
+        Country: <input type="text" class="form-control textInput" id="country" name="country" required>
+        City: <input type="text" class="form-control textInput" id="locality" name="city" required>
+        <div class="nondisplay">
+          <input type="text" id="lat" name="lat" value="">
+          <input type="text" id="lng" name="lng" value="">
+        </div>
+
+        <button type="submit" class="btn btn-default productButtons" name="button">Submit</button>
+        <button type="reset" class="btn btn-default productButtons" id="resetValues" name="button">Clear Values</button>
+      </form>
+    </div>
+    <script type="text/javascript" src="signup.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCioBIw7Zm_9e0Z3a8O0QGVawEZRwPs9TY&callback=initMap">
+    </script>
+  </body>
+</html>

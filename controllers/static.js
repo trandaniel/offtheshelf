@@ -8,12 +8,26 @@ router.get('/', function(req, res) {
   res.render('index', {profile: req.session.profile}) ;
 }) ;
 
+router.get('/index', function(req, res) {
+  res.redirect('../') ;
+}) ;
 router.get('/signup', function(req, res) {
-  res.sendfile('public/views/business/signup.html') ;
+  if(!req.session.profile) {
+    res.render('pharm/signup', {profile: req.session.profile}) ;
+  }
+  else {
+    console.log('already logged in') ;
+    res.redirect('../editprofile') ;
+  }
 }) ;
 
 router.get('/confirm', function(req, res) {
-  res.sendfile('public/views/business/confirm.html') ;
+  if(!req.session.signedup) {
+    res.redirect('../') ;
+  }
+  else {
+    res.render('pharm/confirm', {profile: req.session.profile}) ;
+  }
 }) ;
 
 router.get('/editprofile', function(req, res) {
@@ -22,7 +36,7 @@ router.get('/editprofile', function(req, res) {
     res.render('index') ;
   }
   else {
-    res.render('editProfile', {profile: req.session.profile}) ;
+    res.render('pharm/editProfile', {profile: req.session.profile}) ;
   }
   //res.sendfile('public/views/business/editProfile.html')
 }) ;
