@@ -3,10 +3,10 @@ CPS630 Final Project
 
 Repository for Web Applications (CPS630)
 
-###Off The Shelf
+### Off The Shelf
 A web application service that provides independent pharmacies
 a way to broadcast expiring goods, at discounted prices.
 
-Authors: 
-Balin Banh, Daniel Tr  Tran, 
+Authors:
+Balin Banh, Daniel Tr  Tran,
 Carolyn Wang, Austin Tam, Beverly Li, Jonathan Yuen

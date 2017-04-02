@@ -1,8 +1,6 @@
 var Product = require('../app/models/product') ;
 var router  = require('express').Router() ;
 
-var a ;
-var b ;
 router.get('/', function(req, res, nxt) {
   if(!req.session.profile) {
     res.redirect('../autherr') ;
