@@ -70,6 +70,26 @@ router.get('/autherr', function(req, res) {
   res.render('error/autherr', {profile: req.session.profile}) ;
 }) ;
 
+router.post('/confirmdelete', function(req, res) {
+  if(!req.session.profile) {
+    console.log('nope wrong place') ;
+    res.redirect('../autherr') ;
+  }
+  if(!req.session.products) {
+    console.log('u still dont have shit') ;
+    res.redirect('../prodlist') ;
+  }
+  else {
+    var deleteObj ;
+    for(var i = 0 ; i < req.session.products.length ; i++) {
+      if(req.body.obj === req.session.products._id) {
+        deleteObj = req.session.products._id ;
+        break ;
+      }
+    }
+    res.render('pharm/confirmdelete', {profile: req.session.profile, products: req.session.products, delete: deleteObj}) ;
+  }
+}) ;
 router.use(express.static(__dirname + '/../assets')) ;
 
 module.exports = router ;

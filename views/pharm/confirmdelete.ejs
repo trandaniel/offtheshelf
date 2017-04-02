@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" charset="utf-8">
+  </head>
+  <body>
+    <% include ../navbar/nav %>
+    <div class="container">
+      <h1>Wait a minute!</h1>
+      <p>
+        Are you sure you wish to delete this product?
+      </p>
+      <ul class="list-group">
+        <li class="list-group-item">
+            Product: <%= delete.name %> <br>
+            Stock: <%= delete.stock %> <br>
+            Cost: <%= delete.cost %> <br>
+            Sell by: <%= delete.sellBy %>
+          </li>
+      </ul>
+      <form action="deleteprod" method="POST">
+        <button type="submit" class="btn btn-default" name="button">Confirm</button>
+      </form>
+      <form action="prodlist" method="POST">
+        <button type="submit" class="btn btn-default" name="button">No, take me back!</button>
+      </form>
+    </div>
+  </body>
+</html>
