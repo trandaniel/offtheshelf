@@ -8,6 +8,9 @@ router.get('/', function(req, res) {
   res.render('index', {profile: req.session.profile}) ;
 }) ;
 
+router.get('/404', function(req, res) {
+  res.render('error/404', {profile: req.session.profile, products: req.session.products}) ;
+}) ;
 router.get('/index', function(req, res) {
   res.redirect('../') ;
 }) ;
@@ -70,6 +73,11 @@ router.get('/autherr', function(req, res) {
   res.render('error/autherr', {profile: req.session.profile}) ;
 }) ;
 
+router.get('/confirmdelete', function(req, res) {
+  console.log('howd u get here you lil shit') ;
+  res.redirect('../404')
+}) ;
+
 router.post('/confirmdelete', function(req, res) {
   if(!req.session.profile) {
     console.log('nope wrong place') ;
@@ -82,14 +90,20 @@ router.post('/confirmdelete', function(req, res) {
   else {
     var deleteObj ;
     for(var i = 0 ; i < req.session.products.length ; i++) {
-      if(req.body.obj === req.session.products._id) {
-        deleteObj = req.session.products._id ;
+      if(req.body.obj === req.session.products[i]._id) {
+        deleteObj = req.session.products[i] ;
         break ;
       }
     }
-    res.render('pharm/confirmdelete', {profile: req.session.profile, products: req.session.products, delete: deleteObj}) ;
+    req.session.del = deleteObj ;
+    res.render('pharm/confirmdelete', {
+      profile: req.session.profile,
+      products: req.session.products,
+      del: deleteObj
+    }) ;
   }
 }) ;
+
 router.use(express.static(__dirname + '/../assets')) ;
 
 module.exports = router ;

@@ -25,7 +25,7 @@ router.get('/', function(req, res, nxt) {
         setTimeout(checkProds, 1000) ;
       }
       else {
-        console.log(req.session.products) ;
+        // console.log(req.session.products) ;
         res.redirect('../productlist') ;
       }
     }
