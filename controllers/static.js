@@ -60,11 +60,14 @@ router.get('/productlist', function(req, res) {
     console.log('hello who are u') ;
     res.redirect('../autherr') ;
   }
-  if(!req.session.products) {
+  else if(!req.session.products) {
     console.log('hello u dont have shit') ;
     res.redirect('../prodlist') ;
   }
   else {
+    console.log('hi looking for list') ;
+    console.log(req.session.profile) ;
+    console.log(req.session.products) ;
     res.render('pharm/prodlist', {profile: req.session.profile, products: req.session.products}) ;
   }
 }) ;
@@ -83,7 +86,7 @@ router.post('/confirmdelete', function(req, res) {
     console.log('nope wrong place') ;
     res.redirect('../autherr') ;
   }
-  if(!req.session.products) {
+  else if(!req.session.products) {
     console.log('u still dont have shit') ;
     res.redirect('../prodlist') ;
   }

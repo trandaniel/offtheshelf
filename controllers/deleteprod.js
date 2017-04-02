@@ -7,18 +7,18 @@ router.post('/', function(req, res, nxt) {
     res.redirect('../autherr') ;
   }
   else {
-    console.log('deleting') ;
-    console.log(req.session.products) ;
-    console.log(req.session.del) ;
+    // console.log('deleting') ;
+    // console.log(req.session.products) ;
+    // console.log(req.session.del) ;
     var session = req.session ;
     var products = session.products ;
     var del = session.del ;
     var sessionProfile = session.profile ;
+    var newProdIds = session.profile.prodIds;
 
-    var newProdIds ;
-    for(var i = 0 ; i < session.profile.prodIds.length ; i++) {
-      if(del._id === session.profile.prodIds[i]) {
-        newProdIds = session.profile.prodIds.splice(i, 1) ;
+    for(var i = 0 ; i < newProdIds.length ; i++) {
+      if(del._id === newProdIds[i]) {
+        newProdIds.splice(i, 1) ;
         break ;
       }
     }
@@ -31,9 +31,7 @@ router.post('/', function(req, res, nxt) {
       }
     }
 
-    Profile.findOneAndUpdate({_id: sessionProfile.id}, {$set: {
-      prodIds: newProdIds
-    }}, {new: true}, function(err, profile) {
+    Profile.findOneAndUpdate({_id: sessionProfile.id}, {$set: {prodIds: newProdIds}}, {new: true}, function(err, profile) {
       if(err) {
         return nxt(err) ;
       }
@@ -53,6 +51,16 @@ router.post('/', function(req, res, nxt) {
       }
     }) ;
     session.del = undefined ;
+    // setTimeout(checkProds, 1000) ;
+    // function checkProds() {
+    //   if(!req.session.products.length === ids.length) {
+    //     setTimeout(checkProds, 1000) ;
+    //   }
+    //   else {
+    //     // console.log(req.session.products) ;
+    //     res.redirect('../prodlist') ;
+    //   }
+    // }
     res.redirect('../prodlist') ;
   }
 }) ;

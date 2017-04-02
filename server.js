@@ -28,12 +28,12 @@ app.use(session({
 })) ;
 
 session.profile   = undefined ;
-
+session.products  = undefined ;
 // set view engine =============================================================
 app.set('view engine', 'ejs') ;
 
 // routes and controllers=======================================================
-app.use(express.static(__dirname + '/public'), require('./controllers/static'));
+app.use(express.static(__dirname + '/views'), require('./controllers/static'));
 
 app.use('/login', require('./controllers/login')) ;
 app.use('/logout', require('./controllers/logout')) ;
