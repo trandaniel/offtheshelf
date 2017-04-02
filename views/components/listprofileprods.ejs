@@ -1,0 +1,14 @@
+<ul class="list-group">
+  <% if(!products || products.length === 0) { %>
+    <% include ../error/noprod %>
+  <% } else { %>
+    <% for(var i = 0 ; i < products.length ; i++) { %>
+      <li class="list-group-item">
+        Product: <%= products[i].name %> <br>
+        Stock: <%= products[i].stock %> <br>
+        Cost: <%= products[i].cost %> <br>
+        Sell by: <%= products[i].sellBy %>
+      </li>
+    <% } %>
+  <% } %>
+</ul>
