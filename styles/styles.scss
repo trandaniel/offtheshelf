@@ -119,6 +119,28 @@ $break-sm: 684px ;
   display: none;
 }
 
+.container {
+  > ul {
+    text-align: left ;
+    > li {
+      font-size: 15px ;
+      height: 150px ;
+    }
+  }
+}
+
+.align-right {
+  float: right ;
+}
+
+.align-left {
+  float: left ;
+}
+
+.listDiv {
+  clear: none;
+}
+
 .search {
   width: 99% ;
   display: inline-flex ;
