@@ -9,6 +9,9 @@ $break-sm: 684px ;
 
 }
 
+.readonlyInput {
+  border: none;
+}
 
 .dropdown-content {
   border: 1px solid grey;
@@ -97,21 +100,11 @@ $break-sm: 684px ;
   font-family: 'Montserrat', sans-serif;
 }
 
-#map {
+#map, #signupmap, #editmap {
   min-height: 300px;
   height: 80%;
   min-width: 300px;
   width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-}
-
-#signupmap {
-  min-height: 300px;
-  height: 80%;
-  min-width: 300px;
-  width: 50%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;

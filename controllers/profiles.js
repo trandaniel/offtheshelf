@@ -23,4 +23,8 @@ router.get('/', function(req, res, nxt) {
   }) ;
 }) ;
 
+router.get('/:email', function(req, res, nxt) {
+  //Profile.findOne({req.body})
+  console.log(req.body);
+});
 module.exports = router;

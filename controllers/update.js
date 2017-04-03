@@ -19,6 +19,8 @@ router.post('/', function(req, res, nxt) {
   var newstreetname = chooseentry(sessionProfile.location.street, req.body.editstreetname);
   var newcountry = chooseentry(sessionProfile.location.country, req.body.editcountry);
   var newcity = chooseentry(sessionProfile.location.city, req.body.editcity);
+  var newlat = chooseentry(sessionProfile.location.lat, req.body.lat);
+  var newlng = chooseentry(sessionProfile.location.lng, req.body.lng);
 
   if(req.body.newpass) {
     Profile.findOne({ _id: sessionProfile.id}, function(err, profile) {
@@ -51,7 +53,9 @@ router.post('/', function(req, res, nxt) {
         streetnumber: newstreetnumber,
         street: newstreetname,
         country: newcountry,
-        city: newcity
+        city: newcity,
+        lat:  newlat,
+        lng:  newlng
       }
     }}, {new: true} , function(err, profile) {
      if(err) {
