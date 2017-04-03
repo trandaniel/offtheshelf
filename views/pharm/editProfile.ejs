@@ -22,10 +22,10 @@
       Password:
       <div class="passwordInfo">Current Password:</div>
       <input type="password" class="form-control textInput" name="currentpass" id="currentPass" placeholder="Current Password">
+        <% if(!validPass) { %>
+          <% include ../error/wrongpass %>
+        <% } %>
       <div class="passwordInfo">New Password</div>
-      <% if(!validPass) { %>
-        <% include ../error/wrongpass %>
-      <% } %>
       <input type="password" class="form-control textInput" name="newpass" placeholder="New Password" id="newPassword">
       <input type="password" class="form-control textInput" name="confirmpass" placeholder="Confirm New Password" id="newPasswordConfirm">
         <% if(badPass) { %>
@@ -38,9 +38,12 @@
       <div class="" id="editmap"></div>
 
       <h3>Business Information</h3>
+
       Street Number: <input class="readonlyInput" id="csnum" type="text" name="" value=<%- profile.location.streetnumber %> readonly></input>
       <input id="snum" type="text" class="form-control textInput" name="editstreetnum" placeholder="New Street Number">
-
+        <% if(!stnum) { %>
+          <% include ../error/nonnum %>
+        <% } %>
       Street Name: <input class="readonlyInput" id="csn" type="text" name="" value=<%- profile.location.street %> readonly></input>
       <input id="sn" type="text" class="form-control textInput" name="editstreetname" placeholder="New Street Name">
 

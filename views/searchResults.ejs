@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" charset="utf-8">
+  </head>
+  <body>
+    <% include navbar/nav %>
+    <div class="container">
+      <% if(searchRes.length === 0) { %>
+        <% include error/nores %>
+      <% } else { %>
+        <% include components/listres %>
+      <% } %>
+    </div>
+  </body>
+</html>
