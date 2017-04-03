@@ -27,13 +27,11 @@ app.use(session({
   cookie: {}
 })) ;
 
-session.profile   = undefined ;
-
 // set view engine =============================================================
 app.set('view engine', 'ejs') ;
 
 // routes and controllers=======================================================
-app.use(express.static(__dirname + '/public'), require('./controllers/static'));
+app.use(express.static(__dirname + '/views'), require('./controllers/static'));
 
 app.use('/login', require('./controllers/login')) ;
 app.use('/logout', require('./controllers/logout')) ;
@@ -42,6 +40,16 @@ app.use('/update', require('./controllers/update')) ;
 app.use('/addprod', require('./controllers/addprod')) ;
 app.use('/prodlist', require('./controllers/prodlist')) ;
 app.use('/getprofiles', require('./controllers/profiles'));
+app.use('/deleteprod', require('./controllers/deleteprod')) ;
+
+//404 error page================================================================
+app.use(function(req, res, nxt) {
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
+  res.status(404) ;
+  res.render('error/404', {profile: req.session.profile, valid: req.session.valid})
+}) ;
 
 app.listen(port, function() {
     console.log('Listening on port: ' + port);
