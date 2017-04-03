@@ -5,8 +5,13 @@ var router  = express.Router() ;
 router.get('/', function(req, res) {
   //console.log(req.session.pid) ;
   console.log(req.session.profile) ;
-  res.render('index', {profile: req.session.profile}) ;
+  res.render('index', {profile: req.session.profile}) ;// profiles: req.session.profiles
 }) ;
+
+router.get('/profiles', function(req, res) {
+  console.log('/profiles');
+  res.redirect('../getprofiles') ;
+});
 
 router.get('/index', function(req, res) {
   res.redirect('../') ;

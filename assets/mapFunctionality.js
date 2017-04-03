@@ -5,6 +5,7 @@ var geocoder = new google.maps.Geocoder;
 var locations;
 var markers = [];
 var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var profiles;
 
 function initMap() {
   console.log("initiating map");
@@ -63,10 +64,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 /*
   Get profiles from api
 */
-function getLocations() {
+function getLocations(p) {
   console.log("getting locations");
-  var xhr = new XMLHttpRequest();
-  var rootweb = "http://" + window.location.hostname + ":" + window.location.port + "/api/profiles";
+  /*var xhr = new XMLHttpRequest();
+  var rootweb = "http://" + window.location.hostname + ":" + window.location.port + "/profiles";
   var profiles;
 
   xhr.onreadystatechange = function() {
@@ -80,8 +81,9 @@ function getLocations() {
   }
   //alert(rootweb);
   xhr.open('GET', rootweb , true);
-  xhr.send(null);
+  xhr.send(null);*/
 
+  profiles = p;
 }
 
 /*
@@ -108,6 +110,8 @@ function setMarkers() {
   console.log("````````");
   document.getElementById('displayInfo').innerHTML = infoOutput;
 }
+
+
 
 /*
   Populates area where business information displayed.
