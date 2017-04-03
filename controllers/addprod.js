@@ -41,7 +41,7 @@ router.post('/', function(req, res, nxt) {
          prodIds:  profile.prodIds
        } ;
        req.session.profile = info ;
-       res.redirect('../productList');
+       res.redirect('../prodlist');
       });
     });
   }

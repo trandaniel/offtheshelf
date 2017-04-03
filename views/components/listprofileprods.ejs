@@ -4,12 +4,12 @@
   <% } else { %>
     <% for(var i = 0 ; i < products.length ; i++) { %>
       <li class="list-group-item">
-        <form action="confirmdelete" method="POST">
-          <input type="text" name="obj" value= <%= products[i]._id %> hidden="true">
-          <button type="submit" class="btn btn-default">
-            Delete
-          </button>
-        </form>
+        <div class="del-form">
+          <form action="confirmdelete" method="POST">
+            <input type="text" name="obj" value= <%= products[i]._id %> hidden="true">
+            <button type="submit" class="btn btn-default del-button">Delete</button>
+          </form>
+        </div>
         Product: <%= products[i].name %> <br>
         Stock: <%= products[i].stock %> <br>
         Cost: <%= products[i].cost %> <br>
