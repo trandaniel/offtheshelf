@@ -10,8 +10,12 @@ router.get('/', function(req, res) {
 }) ;
 
 router.get('/404', function(req, res) {
-  res.render('error/404', {profile: req.session.profile, products: req.session.products}) ;
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
+  res.render('error/404', {profile: req.session.profile, products: req.session.products, valid: req.session.valid}) ;
 }) ;
+
 router.get('/index', function(req, res) {
   res.redirect('../') ;
 }) ;
@@ -55,9 +59,12 @@ router.get('/editprofile', function(req, res) {
   if(req.session.validPass === undefined) {
     req.session.validPass = true ;
   }
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
   if(!req.session.profile) {
     console.log('no login') ;
-    res.render('index') ;
+    res.render('error/autherr', {profile: req.session.profile, valid: req.session.valid}) ;
   }
   else {
     res.render('pharm/editProfile', {profile: req.session.profile, badPass: req.session.badPass, nonMatch: req.session.nonMatch, validPass: req.session.validPass}) ;
