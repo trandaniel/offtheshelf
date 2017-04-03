@@ -17,7 +17,7 @@ router.post('/', function(req, res, nxt) {
           prods.push(products[i]) ;
         }
       }
-      // console.log(prods) ;
+      console.log(prods) ;
       req.session.searchRes = prods ;
       res.redirect('../results') ;
     }

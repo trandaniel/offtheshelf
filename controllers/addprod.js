@@ -51,11 +51,20 @@ router.post('/', function(req, res, nxt) {
 
   else {
     var product = new Product({
-      name: req.body.name,
-      cost: req.body.cost,
-      stock: req.body.stock,
+      name:   req.body.name,
+      cost:   req.body.cost,
+      stock:  req.body.stock,
       sellBy: inDate[0] + "-" + (inDate[1]) + "-" + inDate[2],
-      posted: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+      posted: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+      profile: {
+        profileId:     req.session.profile.id,
+        streetnumber:  req.session.profile.location.streetnumber,
+        street:        req.session.profile.location.street,
+        country:       req.session.profile.location.country,
+        city:          req.session.profile.location.city,
+        lat:           req.session.profile.location.lat,
+        lng:           req.session.profile.location.lng
+      }
     },{
         versionKey: false
     }) ;
