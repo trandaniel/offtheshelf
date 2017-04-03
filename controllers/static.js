@@ -53,6 +53,7 @@ router.get('/signup', function(req, res) {
   }
   else {
     console.log('already logged in') ;
+    req.session.user = true ;
     res.redirect('../editprofile') ;
   }
 }) ;
@@ -71,21 +72,38 @@ router.get('/editprofile', function(req, res) {
   if(req.session.badPass === undefined) {
     req.session.badPass = false ;
   }
+
   if(req.session.nonMatch === undefined) {
     req.session.nonMatch = false ;
   }
+
   if(req.session.validPass === undefined) {
     req.session.validPass = true ;
   }
+
   if(req.session.valid === undefined) {
     req.session.valid = true ;
   }
+
+  if(req.session.stnum === undefined) {
+    req.session.stnum = true ;
+  }
+
   if(!req.session.profile) {
     console.log('no login') ;
-    res.render('error/autherr', {profile: req.session.profile, valid: req.session.valid}) ;
+    res.render('error/autherr', {
+      profile: req.session.profile,
+      valid: req.session.valid
+    }) ;
   }
   else {
-    res.render('pharm/editProfile', {profile: req.session.profile, badPass: req.session.badPass, nonMatch: req.session.nonMatch, validPass: req.session.validPass}) ;
+    res.render('pharm/editProfile', {
+      profile: req.session.profile,
+      badPass: req.session.badPass,
+      nonMatch: req.session.nonMatch,
+      validPass: req.session.validPass,
+      stnum: req.session.stnum
+    }) ;
   }
 }) ;
 
