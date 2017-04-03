@@ -5,7 +5,7 @@
   </div>
   <button class="btn btn-default" type="submit" name="button" id="signinbutton">Sign In</button>
   <a href="signup" id="loginForm"><button class="btn btn-default" type="button" name="button" id="signupbutton">Sign Up</button></a>
-  <div id="loginerror">
-    Incorrect username or password!
-  </div>
+  <% if(!valid) { %>
+    <% include invalidpw %>
+  <% } %>
 </form>

@@ -3,9 +3,10 @@ var router  = express.Router() ;
 
 // routes for pages
 router.get('/', function(req, res) {
-  //console.log(req.session.pid) ;
-  console.log(req.session.profile) ;
-  res.render('index', {profile: req.session.profile}) ;
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
+  res.render('index', {profile: req.session.profile, valid: req.session.valid}) ;
 }) ;
 
 router.get('/404', function(req, res) {
@@ -73,7 +74,10 @@ router.get('/productlist', function(req, res) {
 }) ;
 
 router.get('/autherr', function(req, res) {
-  res.render('error/autherr', {profile: req.session.profile}) ;
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
+  res.render('error/autherr', {profile: req.session.profile, valid: req.session.valid}) ;
 }) ;
 
 router.get('/confirmdelete', function(req, res) {

@@ -27,8 +27,6 @@ app.use(session({
   cookie: {}
 })) ;
 
-session.profile   = undefined ;
-session.products  = undefined ;
 // set view engine =============================================================
 app.set('view engine', 'ejs') ;
 
