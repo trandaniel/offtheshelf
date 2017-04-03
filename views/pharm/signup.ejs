@@ -13,8 +13,14 @@
       <form class="signup" action="register" method="POST" onload="initMap()">
         Name: <input type="text" class="form-control textInput" name="name" placeholder="PharmaC" required>
         Email: <input type="text" class="form-control textInput" name="email" placeholder="example@email.com" required>
-        Password: <input type="password" class="form-control textInput" name="password" value="" required>
-        Confirm Password: <input type="password" class="form-control textInput" name="confirmpass" value="" required><br>
+        Password: <input type="password" class="form-control textInput" name="password" required>
+        Confirm Password: <input type="password" class="form-control textInput" name="confirmpass" required><br>
+        <% if(badPass) { %>
+          <% include ../error/badpass %>
+        <% } %>
+        <% if(nonMatch) { %>
+          <% include ../error/nonmatch %>
+        <% } %>
         Find your pharmacy on the map! <br>
         <!-- MAP HERE TOGGLE BETWEEN MANUAL/MAP-->
         <div class="" id="signupmap" onload="reverseGeo()"></div>
