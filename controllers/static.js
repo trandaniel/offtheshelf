@@ -65,12 +65,29 @@ router.get('/editprofile', function(req, res) {
 }) ;
 
 router.get('/addproduct', function(req, res) {
+  if(req.session.badProd === undefined) {
+    req.session.badProd = false ;
+  }
+
+  if(req.session.costNum === undefined) {
+    req.session.costNum = true ;
+  }
+
+  if(req.session.stockNum === undefined) {
+    req.session.stockNum = true ;
+  }
+
   if(!req.session.profile) {
     console.log('you must be logged in u fuk') ;
     res.redirect('../autherr') ;
   }
   else {
-    res.render('pharm/addProduct', {profile: req.session.profile}) ;
+    res.render('pharm/addProduct', {
+      profile: req.session.profile,
+      badProd: req.session.badProd,
+      costNum: req.session.costNum,
+      stockNum: req.session.stockNum
+    }) ;
   }
 }) ;
 
