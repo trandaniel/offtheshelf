@@ -4,7 +4,7 @@
   <title>Edit Profile</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" charset="utf-8">
-  <script type="text/javascript" src="editProfile.js"></script>
+  <script type="text/javascript" src="editProfileMap.js"></script>
   <script src="login.js" charset="utf-8"></script>
 </head>
 <body>
@@ -34,27 +34,37 @@
         <% if(nonMatch) { %>
           <% include ../error/nonmatch %>
         <% } %>
+
+      <div class="" id="editmap"></div>
+
       <h3>Business Information</h3>
-      Street Number: <%= profile.location.streetnumber %>
-      <input type="text" class="form-control textInput" name="editstreetnum" placeholder="New Street Number">
+
+      Street Number: <input class="readonlyInput" id="csnum" type="text" name="" value=<%- profile.location.streetnumber %> readonly></input>
+      <input id="snum" type="text" class="form-control textInput" name="editstreetnum" placeholder="New Street Number">
         <% if(!stnum) { %>
           <% include ../error/nonnum %>
         <% } %>
-      Street Name: <%= profile.location.street %>
-      <input type="text" class="form-control textInput" name="editstreetname" placeholder="New Street Name">
+      Street Name: <input class="readonlyInput" id="csn" type="text" name="" value=<%- profile.location.street %> readonly></input>
+      <input id="sn" type="text" class="form-control textInput" name="editstreetname" placeholder="New Street Name">
 
-      Country: <%= profile.location.country %>
-      <input type="text" class="form-control textInput" name="editcountry" placeholder="New name">
+      Country: <input class="readonlyInput" id="ccn" type="text" name="" value=<%- profile.location.country %> readonly></input>
+      <input id="cn" type="text" class="form-control textInput" name="editcountry" placeholder="New Country">
 
-      City: <%= profile.location.city %>
-      <input type="text" class="form-control textInput" name="editcity" placeholder="New name">
+      City: <input class="readonlyInput" id="cct" type="text" name="" value=<%- profile.location.city %> readonly></input>
+      <input id="ct" type="text" class="form-control textInput" name="editcity" placeholder="New City">
 
+      <%console.log(profile.location);%>
+      <input id="lat" type="text" class="nondisplay" name="lat" value=<%-profile.location.lat%>></input>
+      <input id="lng" type="text" class="nondisplay" name="lng" value=<%-profile.location.lng%>></input>
       <div class="container-fluid">
         <button type="submit" class="btn btn-default productButtons" name="">Submit</button>
         <button type="reset" class="btn btn-default productButtons" name="">Clear</button>
       </div>
-
     </form>
+    <script type="text/javascript" src="editProfileMap.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCioBIw7Zm_9e0Z3a8O0QGVawEZRwPs9TY&callback=initMap">
+    </script>
   </div>
 </body>
 </html>
