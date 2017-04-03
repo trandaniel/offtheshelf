@@ -41,7 +41,7 @@ app.use('/addprod', require('./controllers/addprod')) ;
 app.use('/prodlist', require('./controllers/prodlist')) ;
 app.use('/getprofiles', require('./controllers/profiles'));
 app.use('/deleteprod', require('./controllers/deleteprod')) ;
-
+app.use('/search', require('./controllers/search')) ;
 //404 error page================================================================
 app.use('*', function(req, res, nxt) {
   if(req.session.valid === undefined) {

@@ -119,6 +119,20 @@ $break-sm: 684px ;
   display: none;
 }
 
+.search {
+  width: 99% ;
+  display: inline-flex ;
+  > form {
+    width: 100% ;
+    > button {
+      width: 100% ;
+      color: white;
+      background-color: rgb(30, 143, 190) ;
+      margin-left: 0; 
+    }
+  }
+}
+
 .del-form {
   text-align: right ;
 }

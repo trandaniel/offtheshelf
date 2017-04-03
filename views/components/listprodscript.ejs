@@ -1,0 +1,12 @@
+<ul class="list-group">
+  <% for(var i = 0 ; i < searchRes.length ; i++) { %>
+    <li class="list-group-item">
+      <div class="del-form">
+      </div>
+        Product: <%= searchRes[i].name %> <br>
+        Stock: <%= searchRes[i].stock %> <br>
+        Cost: <%= searchRes[i].cost %> <br>
+        Sell by: <%= searchRes[i].sellBy %>
+      </li>
+    <% } %>
+  </ul>

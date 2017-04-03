@@ -25,6 +25,20 @@ router.get('/index', function(req, res) {
   res.redirect('../') ;
 }) ;
 
+router.get('/results', function(req, res) {
+  if(req.session.searchRes === undefined) {
+    req.session.searchRes = [] ;
+  }
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
+
+  res.render('searchResults', {
+    profile: req.session.profile,
+    valid: req.session.valid,
+    searchRes: req.session.searchRes
+  }) ;
+}) ;
 router.get('/signup', function(req, res) {
   if(req.session.nonMatch === undefined) {
     req.session.nonMatch = false ;
