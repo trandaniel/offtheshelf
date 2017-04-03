@@ -22,6 +22,9 @@ router.get('/profiles', function(req, res) {
 });
 
 router.get('/index', function(req, res) {
+  if(req.session.valid === undefined || req.session.valid === false) {
+    req.session.valid = true ;
+  }
   res.redirect('../') ;
 }) ;
 
