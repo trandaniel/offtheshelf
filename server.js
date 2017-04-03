@@ -41,6 +41,14 @@ app.use('/addprod', require('./controllers/addprod')) ;
 app.use('/prodlist', require('./controllers/prodlist')) ;
 app.use('/deleteprod', require('./controllers/deleteprod')) ;
 
+//404 error page================================================================
+app.use(function(req, res, nxt) {
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
+  res.status(404) ;
+  res.render('error/404', {profile: req.session.profile, valid: req.session.valid})
+}) ;
 app.listen(port, function() {
     console.log('Listening on port: ' + port);
 });
