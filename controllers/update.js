@@ -49,7 +49,7 @@ router.post('/', function(req, res, nxt) {
     email: newemail,
     location: {
         streetnumber: newstreetnumber,
-        steet: newstreetname,
+        street: newstreetname,
         country: newcountry,
         city: newcity
       }
