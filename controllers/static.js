@@ -6,7 +6,10 @@ router.get('/', function(req, res) {
   if(req.session.valid === undefined) {
     req.session.valid = true ;
   }
-  res.render('index', {profile: req.session.profile, valid: req.session.valid}) ;
+  if(req.session.hello === undefined) {
+    req.session.hello = false ;
+  }
+  res.render('index', {profile: req.session.profile, valid: req.session.valid, hello: req.session.hello}) ;
 }) ;
 
 router.get('/404', function(req, res) {
