@@ -6,12 +6,19 @@ router.post('/', function(req, res, nxt) {
   if(req.session.badPass === undefined || req.session.badPass === true) {
     req.session.badPass = false ;
   }
+
   if(req.session.nonMatch === undefined || req.session.nonMatch === true) {
     req.session.nonMatch = false ;
   }
+
   if(req.session.validPass === undefined || req.session.validPass === false) {
     req.session.validPass = true ;
   }
+
+  if(req.session.stnum === undefined || req.session.stnum === false) {
+    req.session.stnum = true ;
+  }
+
   var sessionProfile = req.session.profile ;
   var newname = chooseentry(sessionProfile.name, req.body.editname);
   var newemail = chooseentry(sessionProfile.email, req.body.editemail);
@@ -20,53 +27,63 @@ router.post('/', function(req, res, nxt) {
   var newcountry = chooseentry(sessionProfile.location.country, req.body.editcountry);
   var newcity = chooseentry(sessionProfile.location.city, req.body.editcity);
 
-  if(req.body.newpass) {
-    Profile.findOne({ _id: sessionProfile.id}, function(err, profile) {
-      if(profile.validPassword(req.body.currentpass)) {
-        if(req.body.newpass === req.body.confirmpass) {
-          var passwordChecker = req.body.newpass.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) ;
-          if(!(passwordChecker === -1)) {
-            updatePass(req.body.newpass, sessionProfile.id) ;
+  if(isNaN(newstreetnumber)) {
+    req.session.stnum = false ;
+    res.redirect('../editprofile') ;
+  }
+  else {
+    if(req.body.newpass) {
+      Profile.findOne({ _id: sessionProfile.id}, function(err, profile) {
+        if(profile.validPassword(req.body.currentpass)) {
+          if(req.body.newpass === req.body.confirmpass) {
+            var passwordChecker = req.body.newpass.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) ;
+            if(!(passwordChecker === -1)) {
+              updatePass(req.body.newpass, sessionProfile.id) ;
+            }
+            else {
+              console.log('password must contain at least 1 capital, 8 characters and digit') ;
+              req.session.badPass = true ;
+              res.redirect('../editprofile') ;
+            }
           }
           else {
-            console.log('password must contain at least 1 capital, 8 characters and digit') ;
-            req.session.badPass = true ;
+            console.log('password dont match') ;
+            req.session.nonMatch = true ;
+            res.redirect('../editprofile') ;
           }
         }
         else {
-          console.log('password dont match') ;
-          req.session.nonMatch = true ;
+          console.log('invalid password update') ;
+          req.session.validPass = false ;
+          res.redirect('../editprofile') ;
         }
-      }
-      else {
-        console.log('invalid password update') ;
-        req.session.validPass = false ;
-      }
-    }) ;
-  }
-  Profile.findOneAndUpdate({ _id: sessionProfile.id }, { $set: {
-    name: newname,
-    email: newemail,
-    location: {
+      }) ;
+    }
+
+    Profile.findOneAndUpdate({ _id: sessionProfile.id }, { $set: {
+      name: newname,
+      email: newemail,
+      location: {
         streetnumber: newstreetnumber,
-        steet: newstreetname,
+        street: newstreetname,
         country: newcountry,
         city: newcity
       }
     }}, {new: true} , function(err, profile) {
-     if(err) {
-       return nxt(err) ;
-     }
-     var info = {
-       id:       profile.id,
-       name:     profile.name,
-       email:    profile.email,
-       location: profile.location,
-       prodIds:  profile.prodIds
-     } ;
-     req.session.profile = info ;
-     res.redirect('../editprofile') ;
-   }) ;
+      if(err) {
+        return nxt(err) ;
+      }
+      var info = {
+        id:       profile.id,
+        name:     profile.name,
+        email:    profile.email,
+        location: profile.location,
+        prodIds:  profile.prodIds
+      } ;
+      req.session.profile = info ;
+      res.redirect('../editprofile') ;
+    }) ;
+  }
 }) ;
 
 function chooseentry(stringA, stringB) {
@@ -91,4 +108,5 @@ function updatePass(password, id) {
     }
   }) ;
 }
+
 module.exports = router ;

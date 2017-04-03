@@ -26,20 +26,34 @@ router.get('/index', function(req, res) {
 }) ;
 
 router.get('/signup', function(req, res) {
-  if(req.session.nonMatch === undefined) {
+  if(req.session.nonMatch === undefined || req.session.nonMatch === true) {
     req.session.nonMatch = false ;
   }
-  if(req.session.badPass === undefined) {
+
+  if(req.session.badPass === undefined || req.session.badPass === true) {
     req.session.badPass = false ;
   }
-  if(req.session.valid === undefined) {
+
+  if(req.session.valid === undefined || req.session.valid === false) {
     req.session.valid = true ;
   }
+
+  if(req.session.stnum === undefined || req.session.stnum === false) {
+    req.session.stnum = true ;
+  }
+
   if(!req.session.profile) {
-    res.render('pharm/signup', {profile: req.session.profile, nonMatch: req.session.nonMatch, badPass: req.session.badPass, valid: req.session.valid}) ;
+    res.render('pharm/signup', {
+      profile: req.session.profile,
+      nonMatch: req.session.nonMatch,
+      badPass: req.session.badPass,
+      valid: req.session.valid,
+      stnum: req.session.stnum
+    }) ;
   }
   else {
     console.log('already logged in') ;
+    req.session.user = true ;
     res.redirect('../editprofile') ;
   }
 }) ;
@@ -58,21 +72,38 @@ router.get('/editprofile', function(req, res) {
   if(req.session.badPass === undefined) {
     req.session.badPass = false ;
   }
+
   if(req.session.nonMatch === undefined) {
     req.session.nonMatch = false ;
   }
+
   if(req.session.validPass === undefined) {
     req.session.validPass = true ;
   }
+
   if(req.session.valid === undefined) {
     req.session.valid = true ;
   }
+
+  if(req.session.stnum === undefined) {
+    req.session.stnum = true ;
+  }
+
   if(!req.session.profile) {
     console.log('no login') ;
-    res.render('error/autherr', {profile: req.session.profile, valid: req.session.valid}) ;
+    res.render('error/autherr', {
+      profile: req.session.profile,
+      valid: req.session.valid
+    }) ;
   }
   else {
-    res.render('pharm/editProfile', {profile: req.session.profile, badPass: req.session.badPass, nonMatch: req.session.nonMatch, validPass: req.session.validPass}) ;
+    res.render('pharm/editProfile', {
+      profile: req.session.profile,
+      badPass: req.session.badPass,
+      nonMatch: req.session.nonMatch,
+      validPass: req.session.validPass,
+      stnum: req.session.stnum
+    }) ;
   }
 }) ;
 
