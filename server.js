@@ -39,6 +39,7 @@ app.use('/register', require('./controllers/register')) ;
 app.use('/update', require('./controllers/update')) ;
 app.use('/addprod', require('./controllers/addprod')) ;
 app.use('/prodlist', require('./controllers/prodlist')) ;
+app.use('/getprofiles', require('./controllers/profiles'));
 app.use('/deleteprod', require('./controllers/deleteprod')) ;
 
 //404 error page================================================================
@@ -49,6 +50,7 @@ app.use('*', function(req, res, nxt) {
   res.status(404) ;
   res.redirect('../404') ;
 }) ;
+
 app.listen(port, function() {
     console.log('Listening on port: ' + port);
 });
