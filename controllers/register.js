@@ -38,8 +38,8 @@ router.post('/', function(req, res, nxt) {
         street: req.body.street,
         country: req.body.country,
         city: req.body.city,
-        lat: "test",
-        lng: "Test"
+        lat: req.body.lat,
+        lng: req.body.lng
       },
       prodIds: []
     },{

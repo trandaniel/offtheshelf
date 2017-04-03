@@ -3,6 +3,7 @@ var currentPos = [];
 var geomarker;
 var geocoder ;
 var timeout = null;
+var myloc;
 
 var sn = document.getElementById("streetnumber");
 var rt = document.getElementById("route");
@@ -45,7 +46,7 @@ function initMap() {
       /*
       Creates custom marker for current location.
       */
-      var myloc = new google.maps.Marker({
+      myloc = new google.maps.Marker({
         clickable: false,
         icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
         new google.maps.Size(22,22),
@@ -90,7 +91,7 @@ function reverseGeo(lati, long) {
           inputfields(results[0].address_components[c]);
         }
         document.getElementById('lat').value = lati;
-        document.getElementById('lng').value = lng;
+        document.getElementById('lng').value = long;
       } else {
         console.log("no results");
         window.alert('No results found');
@@ -129,18 +130,17 @@ function inputfields(components) {
 function geocode() {
   var address = document.getElementById('streetnumber').value + " " + document.getElementById('route').value + ', ' +
   document.getElementById('locality').value + ', ' + document.getElementById('country').value;
-
+  console.log(address);
   geocoder.geocode({
     'address': address
   },
   function(results, status) {
     if(status == google.maps.GeocoderStatus.OK) {
-      console.log(results[0]);
-      new google.maps.Marker({
-        position: results[0].geometry.location,
-        map: map
-      });
+      console.log('Results: ', results[0]);
+      myloc.setPosition(results[0].geometry.location);
       map.setCenter(results[0].geometry.location);
+      document.getElementById('lat').value = results[0].geometry.location.lat();
+      document.getElementById('lng').value = results[0].geometry.location.lng();
       document.getElementById('reverseGeo').innerHTML = results[0].formatted_address;
     }
   });

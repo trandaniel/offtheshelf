@@ -12,6 +12,12 @@ router.get('/', function(req, res) {
 router.get('/404', function(req, res) {
   res.render('error/404', {profile: req.session.profile, products: req.session.products}) ;
 }) ;
+
+router.get('/profiles', function(req, res) {
+  console.log('/profiles');
+  res.redirect('../getprofiles') ;
+});
+
 router.get('/index', function(req, res) {
   res.redirect('../') ;
 }) ;
