@@ -3,30 +3,52 @@ var router  = require('express').Router() ;
 
 
 router.post('/', function(req, res, nxt) {
-  if(req.session.nonMatch === undefined) {
+
+  if(req.session.nonMatch === undefined || req.session.nonMatch === true) {
     req.session.nonMatch === false ;
   }
-  if(req.session.badPass === undefined) {
+
+  if(req.session.badPass === undefined || req.session.badPass === true) {
     req.session.badPass === false ;
   }
 
-  var passwordChecker = req.body.password.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) ;
-  if(!(req.body.password === req.body.confirmpass) && (passwordChecker === -1)) {
-    console.log('u hella fked up son') ;
-    req.session.badPass = true ;
-    req.session.nonMatch = true ;
-    res.redirect('../signup') ;
+  if(req.session.stnum === undefined || req.session.stnum === false) {
+    req.session.stnum = true ;
   }
-  else if(passwordChecker === -1) {
+
+  if(req.session.valid === undefined || req.session.valid === false) {
+    req.session.valid = true ;
+  }
+
+  var passwordChecker = req.body.password.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) ;
+
+  if(isNaN(req.body.streetnumber)) {
+    console.log('st num not num') ;
+    req.session.stnum = false ;
+  }
+
+  if(passwordChecker === -1) {
     console.log('password must meet requirements') ;
     req.session.badPass = true ;
-    res.redirect('../signup') ;
+    //res.redirect('../signup') ;
   }
-  else if(!req.body.password === req.body.confirmpass) {
+  if(!req.body.password === req.body.confirmpass) {
     console.log('passwords must match') ;
     req.session.nonMatch = true ;
-    res.redirect('../signup') ;
+    //res.redirect('../signup') ;
   }
+
+  if(req.session.nonMatch || req.session.badPass || !req.session.stnum) {
+    console.log("errors") ;
+    res.render('pharm/signup', {
+      profile: req.session.profile,
+      nonMatch: req.session.nonMatch,
+      badPass: req.session.badPass,
+      valid: req.session.valid,
+      stnum: req.session.stnum
+    }) ;
+  }
+
   else {
     req.session.badPass  = false ;
     req.session.nonMatch = false ;

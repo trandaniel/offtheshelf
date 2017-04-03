@@ -25,8 +25,11 @@
         <div class="" id="signupmap" onload="reverseGeo()"></div>
         <div class="" id="reverseGeo"></div>
         <br>
-        Or type in your address. <br> <br>
+        Address <br> <br>
         Street Number: <input type="text" class="form-control textInput" id="streetnumber" name="streetnumber" required>
+          <% if(!stnum) { %>
+            <% include ../error/nonnum %>
+          <% } %>
         Street Name: <input type="text" class="form-control textInput" id="route" name="street" required>
         Country: <input type="text" class="form-control textInput" id="country" name="country" required>
         City: <input type="text" class="form-control textInput" id="locality" name="city" required>
