@@ -17,8 +17,17 @@ router.get('/index', function(req, res) {
 }) ;
 
 router.get('/signup', function(req, res) {
+  if(req.session.nonMatch === undefined) {
+    req.session.nonMatch = false ;
+  }
+  if(req.session.badPass === undefined) {
+    req.session.badPass = false ;
+  }
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
   if(!req.session.profile) {
-    res.render('pharm/signup', {profile: req.session.profile}) ;
+    res.render('pharm/signup', {profile: req.session.profile, nonMatch: req.session.nonMatch, badPass: req.session.badPass, valid: req.session.valid}) ;
   }
   else {
     console.log('already logged in') ;
@@ -37,12 +46,21 @@ router.get('/confirm', function(req, res) {
 }) ;
 
 router.get('/editprofile', function(req, res) {
+  if(req.session.badPass === undefined) {
+    req.session.badPass = false ;
+  }
+  if(req.session.nonMatch === undefined) {
+    req.session.nonMatch = false ;
+  }
+  if(req.session.validPass === undefined) {
+    req.session.validPass = true ;
+  }
   if(!req.session.profile) {
     console.log('no login') ;
     res.render('index') ;
   }
   else {
-    res.render('pharm/editProfile', {profile: req.session.profile}) ;
+    res.render('pharm/editProfile', {profile: req.session.profile, badPass: req.session.badPass, nonMatch: req.session.nonMatch, validPass: req.session.validPass}) ;
   }
 }) ;
 

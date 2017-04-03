@@ -24,10 +24,17 @@
       <div class="passwordInfo">Current Password:</div>
       <input type="password" class="form-control textInput" name="currentpass" id="currentPass" placeholder="Current Password">
       <div class="passwordInfo">New Password</div>
-      <div class="error"></div>
+      <% if(!validPass) { %>
+        <% include ../error/wrongpass %>
+      <% } %>
       <input type="password" class="form-control textInput" name="newpass" placeholder="New Password" id="newPassword">
       <input type="password" class="form-control textInput" name="confirmpass" placeholder="Confirm New Password" id="newPasswordConfirm">
-
+        <% if(badPass) { %>
+          <% include ../error/badpass %>
+        <% } %>
+        <% if(nonMatch) { %>
+          <% include ../error/nonmatch %>
+        <% } %>
       <h3>Business Information</h3>
       Street Number: <%= profile.location.streetnumber %>
       <input type="text" class="form-control textInput" name="editstreetnum" placeholder="New Street Number">

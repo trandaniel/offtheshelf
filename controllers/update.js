@@ -3,6 +3,15 @@ var router      = require('express').Router() ;
 var crypto      = require('crypto') ;
 
 router.post('/', function(req, res, nxt) {
+  if(req.session.badPass === undefined || req.session.badPass === true) {
+    req.session.badPass = false ;
+  }
+  if(req.session.nonMatch === undefined || req.session.nonMatch === true) {
+    req.session.nonMatch = false ;
+  }
+  if(req.session.validPass === undefined || req.session.validPass === false) {
+    req.session.validPass = true ;
+  }
   var sessionProfile = req.session.profile ;
   var newname = chooseentry(sessionProfile.name, req.body.editname);
   var newemail = chooseentry(sessionProfile.email, req.body.editemail);
@@ -21,14 +30,17 @@ router.post('/', function(req, res, nxt) {
           }
           else {
             console.log('password must contain at least 1 capital, 8 characters and digit') ;
+            req.session.badPass = true ;
           }
         }
         else {
           console.log('password dont match') ;
+          req.session.nonMatch = true ;
         }
       }
       else {
         console.log('invalid password update') ;
+        req.session.validPass = false ;
       }
     }) ;
   }
