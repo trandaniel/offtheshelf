@@ -75,7 +75,6 @@ $break-sm: 684px ;
 #loginerror {
   font-size: 14px;
   color: red;
-  display: none;
 }
 
 #logoutbutton {
@@ -120,6 +119,10 @@ $break-sm: 684px ;
   display: none;
 }
 
+.del-form {
+  text-align: right ;
+}
+
 .productButtons {
   color: white;
   background-color: rgb(30, 143, 190);
@@ -127,7 +130,33 @@ $break-sm: 684px ;
 }
 
 .textInput {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.confirm-del {
+  width: 99% ;
+  display: inline-flex ;
+  > form {
+    width: 100% ;
+    > button {
+      width: 100% ;
+      margin-left: 0px ;
+      background-color: rgb(30, 143, 190);
+    }
+  }
+}
+
+.no-del {
+  width: 99% ;
+  display: inline-flex ;
+  > form {
+    width: 100% ;
+    > button {
+      width: 100% ;
+      margin-left: 0px ;
+      background-color: rgb(30, 143, 190);
+    }
+  }
 }
 
 form {

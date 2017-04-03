@@ -20,12 +20,12 @@ router.get('/', function(req, res, nxt) {
 
     // allow time for queries to complete
     setTimeout(checkProds, 1000) ;
-    function checkProds(a, b) {
+    function checkProds() {
       if(!req.session.products.length === ids.length) {
         setTimeout(checkProds, 1000) ;
       }
       else {
-        console.log(req.session.products) ;
+        // console.log(req.session.products) ;
         res.redirect('../productlist') ;
       }
     }

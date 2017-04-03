@@ -3,11 +3,15 @@ var router  = express.Router() ;
 
 // routes for pages
 router.get('/', function(req, res) {
-  //console.log(req.session.pid) ;
-  console.log(req.session.profile) ;
-  res.render('index', {profile: req.session.profile}) ;
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
+  res.render('index', {profile: req.session.profile, valid: req.session.valid}) ;
 }) ;
 
+router.get('/404', function(req, res) {
+  res.render('error/404', {profile: req.session.profile, products: req.session.products}) ;
+}) ;
 router.get('/index', function(req, res) {
   res.redirect('../') ;
 }) ;
@@ -57,17 +61,54 @@ router.get('/productlist', function(req, res) {
     console.log('hello who are u') ;
     res.redirect('../autherr') ;
   }
-  if(!req.session.products) {
+  else if(!req.session.products) {
     console.log('hello u dont have shit') ;
     res.redirect('../prodlist') ;
   }
   else {
+    console.log('hi looking for list') ;
+    console.log(req.session.profile) ;
+    console.log(req.session.products) ;
     res.render('pharm/prodlist', {profile: req.session.profile, products: req.session.products}) ;
   }
 }) ;
 
 router.get('/autherr', function(req, res) {
-  res.render('error/autherr', {profile: req.session.profile}) ;
+  if(req.session.valid === undefined) {
+    req.session.valid = true ;
+  }
+  res.render('error/autherr', {profile: req.session.profile, valid: req.session.valid}) ;
+}) ;
+
+router.get('/confirmdelete', function(req, res) {
+  console.log('howd u get here you lil shit') ;
+  res.redirect('../404')
+}) ;
+
+router.post('/confirmdelete', function(req, res) {
+  if(!req.session.profile) {
+    console.log('nope wrong place') ;
+    res.redirect('../autherr') ;
+  }
+  else if(!req.session.products) {
+    console.log('u still dont have shit') ;
+    res.redirect('../prodlist') ;
+  }
+  else {
+    var deleteObj ;
+    for(var i = 0 ; i < req.session.products.length ; i++) {
+      if(req.body.obj === req.session.products[i]._id) {
+        deleteObj = req.session.products[i] ;
+        break ;
+      }
+    }
+    req.session.del = deleteObj ;
+    res.render('pharm/confirmdelete', {
+      profile: req.session.profile,
+      products: req.session.products,
+      del: deleteObj
+    }) ;
+  }
 }) ;
 
 router.use(express.static(__dirname + '/../assets')) ;

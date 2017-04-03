@@ -27,13 +27,11 @@ app.use(session({
   cookie: {}
 })) ;
 
-session.profile   = undefined ;
-
 // set view engine =============================================================
 app.set('view engine', 'ejs') ;
 
 // routes and controllers=======================================================
-app.use(express.static(__dirname + '/public'), require('./controllers/static'));
+app.use(express.static(__dirname + '/views'), require('./controllers/static'));
 
 app.use('/login', require('./controllers/login')) ;
 app.use('/logout', require('./controllers/logout')) ;
@@ -41,6 +39,7 @@ app.use('/register', require('./controllers/register')) ;
 app.use('/update', require('./controllers/update')) ;
 app.use('/addprod', require('./controllers/addprod')) ;
 app.use('/prodlist', require('./controllers/prodlist')) ;
+app.use('/deleteprod', require('./controllers/deleteprod')) ;
 
 app.listen(port, function() {
     console.log('Listening on port: ' + port);
