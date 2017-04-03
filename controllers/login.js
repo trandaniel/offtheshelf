@@ -2,6 +2,10 @@ var Profile        = require('../app/models/profile') ;
 var router         = require('express').Router() ;
 
 router.post('/', function(req, res, nxt) {
+  if(req.session.valid === undefined || req.session.valid === false) {
+    req.session.valid = true ;
+  }
+  
   Profile.findOne({email: req.body.email}, function(err, profile) {
     if(err || !profile) {
       req.session.valid = false ;
