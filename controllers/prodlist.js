@@ -8,7 +8,7 @@ router.get('/', function(req, res, nxt) {
   else {
     var ids = req.session.profile.prodIds ;
     req.session.products = [] ;
-    console.log(ids) ;
+    //console.log(ids) ;
     for(var i = 0 ; i < ids.length ; i++) {
       Product.findOne({_id: ids[i]}, function(err, product) {
         if(err) {

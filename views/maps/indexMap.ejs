@@ -8,7 +8,7 @@ var geocoder;
 var currentPos = []
 //console.log(profiles);
 function initMap() {
-  console.log("initiating map");
+  //console.log("initiating map");
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
@@ -39,20 +39,20 @@ function initMap() {
       });
       myloc.setPosition(pos);
       map.setCenter(pos);
-      console.log("Map set");
+      //console.log("Map set");
       getLocations();
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
   } else {
     // Browser doesn't support Geolocation
-    console.log("");
+    //console.log("");
     handleLocationError(false, infoWindow, map.getCenter());
   }
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  console.log("Location failed");
+  //console.log("Location failed");
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
     'Error: The Geolocation service failed.' :
@@ -60,15 +60,15 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   }
 
   function getLocations() {
-    console.log('getting location');
+    //console.log('getting location');
     //console.log(allProfiles) ;
     xhr = new XMLHttpRequest();
-    var rootweb = "http://offtheshelf.herokuapp.com" + "/profiles";
+    var rootweb = "http://localhost:3000/profiles";//"http://offtheshelf.herokuapp.com" + "/profiles";
     xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        console.log('api requested');
+        //console.log('api requested');
         profiles = JSON.parse(xhr.responseText);
-        console.log(profiles);
+        //console.log(profiles);
         setMarkers();
       }
     }
@@ -78,17 +78,17 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   }
 
   function setMarkers() {
-    console.log('setting markers');
-    console.log(profiles.length);
+    //console.log('setting markers');
+    //console.log(profiles.length);
     var infoOutput = "";
     for (var profile = 0 ; profile < profiles.length ; profile++) {
 
       var mark = profiles[profile];
 
       var latlng = new google.maps.LatLng(parseFloat(mark.location.lat), parseFloat(mark.location.lng));
-      console.log(latlng);
+      /*console.log(latlng);
       console.log("Mark");
-      console.log(mark, profile);
+      console.log(mark, profile);*/
 
       var marker = new google.maps.Marker({
         position: latlng,
@@ -105,15 +105,15 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     Populates area where business information displayed.
   */
   function setoutput(mark, index) {
-    console.log("getting display information", mark);
+    //console.log("getting display information", mark);
     var address = "<h4>" + mark.location.streetnumber + " " + mark.location.street + "</h4><p>" + mark.location.city + ", " + mark.location.country + "</p>";
     var title = "<div><h2 class=\"innerTitle\">" + labels.charAt(index) + "</h2>" + "<h3 class=\"innerTitle\">" + mark.name + "</h3></div>";
-    console.log("<div class=\"innerInfo\" onclick=\"highlightMarker(this.innerHTML)\">" + title + address + "</div>");
+    //console.log("<div class=\"innerInfo\" onclick=\"highlightMarker(this.innerHTML)\">" + title + address + "</div>");
     return "<div class=\"innerInfo\" onclick=\"highlightMarker(this.innerHTML)\">" + title + address + "</div>";
   }
 
   function highlightMarker(contents) {
-    console.log("clicked");
+    //console.log("clicked");
     stopCurrentAnimations();
     var index = labels.indexOf(contents.charAt(contents.indexOf("</h2>") -1)); //Get marker index by relating to position of label A,B,C ec
     var selected = markers[index];

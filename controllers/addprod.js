@@ -24,17 +24,17 @@ router.post('/', function(req, res, nxt) {
   }
 
   if(inDate[0] < date.getFullYear()) {
-    console.log('cannot add product that has to be sold in the past') ;
+    //console.log('cannot add product that has to be sold in the past') ;
     req.session.badProd = true ;
     res.redirect('../addproduct') ;
   }
   else if(inDate[0] === date.getFullYear() && inDate[1] < (date.getMonth() + 1)) {
-    console.log('cannot add product that has to be sold in the past') ;
+    //console.log('cannot add product that has to be sold in the past') ;
     req.session.badProd = true ;
     res.redirect('../addproduct') ;
   }
   else if(inDate[0] === date.getFullYear() && inDate[1] === (date.getMonth() + 1) && inDate[2] <= date.getDate()) {
-    console.log('cannot add product that has to be sold in the past') ;
+    //console.log('cannot add product that has to be sold in the past') ;
     req.session.badProd = true ;
     res.redirect('../addproduct') ;
   }
