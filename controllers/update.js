@@ -45,48 +45,54 @@ router.post('/', function(req, res, nxt) {
             else {
               console.log('password must contain at least 1 capital, 8 characters and digit') ;
               req.session.badPass = true ;
-              res.redirect('../editprofile') ;
+              // res.redirect('../editprofile') ;
             }
           }
           else {
             console.log('password dont match') ;
             req.session.nonMatch = true ;
-            res.redirect('../editprofile') ;
+            // res.redirect('../editprofile') ;
           }
         }
         else {
           console.log('invalid password update') ;
           req.session.validPass = false ;
-          res.redirect('../editprofile') ;
+          // res.redirect('../editprofile') ;
         }
       }) ;
     }
 
-    Profile.findOneAndUpdate({ _id: sessionProfile.id }, { $set: {
-      name: newname,
-      email: newemail,
-      location: {
-        streetnumber: newstreetnumber,
-        street: newstreetname,
-        country: newcountry,
-        city: newcity,
-        lat:  newlat,
-        lng:  newlng
-      }
-    }}, {new: true} , function(err, profile) {
-      if(err) {
-        return nxt(err) ;
-      }
-      var info = {
-        id:       profile.id,
-        name:     profile.name,
-        email:    profile.email,
-        location: profile.location,
-        prodIds:  profile.prodIds
-      } ;
-      req.session.profile = info ;
+    if(req.session.badPass || req.session.nonMatch || !req.session.validPass) {
       res.redirect('../editprofile') ;
-    }) ;
+    }
+
+    else {
+      Profile.findOneAndUpdate({ _id: sessionProfile.id }, { $set: {
+        name: newname,
+        email: newemail,
+        location: {
+          streetnumber: newstreetnumber,
+          street: newstreetname,
+          country: newcountry,
+          city: newcity,
+          lat:  newlat,
+          lng:  newlng
+        }
+      }}, {new: true} , function(err, profile) {
+        if(err) {
+          return nxt(err) ;
+        }
+        var info = {
+          id:       profile.id,
+          name:     profile.name,
+          email:    profile.email,
+          location: profile.location,
+          prodIds:  profile.prodIds
+        } ;
+        req.session.profile = info ;
+        res.redirect('../editprofile') ;
+      }) ;
+    }
   }
 }) ;
 
