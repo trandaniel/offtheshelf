@@ -9,9 +9,9 @@ router.post('/', function(req, res, nxt) {
   var searchTerm = req.body.searchTerm.toLowerCase() ;
   console.log('searching') ;
   console.log(searchTerm) ;
-  var checkInput = "^[A-Za-z0-9]*$" ;
-
-  if(searchTerm.search(/checkInput/i) === -1) {
+  var checkInput = "^[a-z0-9]*$" ;
+  // console.log(searchTerm.search(/^[a-z0-9]*$/i)) ;
+  if(searchTerm.search(/^[a-z0-9]*$/i) === -1) {
     req.session.hello = true ;
     res.redirect('../') ;
   }
