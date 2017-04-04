@@ -13,12 +13,12 @@
       <h1>Add a new product you wish to have off your shelf!</h1>
       <form class="addProd" action="addprod" method="POST">
         <input type="text" name="email" id="emailsubmit" value="" style="display: none" readonly>
-        Product name: <input type="text" class="form-control textInput" name="name">
-        Product cost: <input type="text" class="form-control textInput" name="cost">
+        Product name: <input type="text" class="form-control textInput" name="name" placeholder="Product Name (Dosage) [Amount]">
+        Product cost: <input type="text" class="form-control textInput" name="cost" placeholder="Cost in $">
           <% if(!costNum) { %>
             <% include ../error/nonnum %>
           <% } %>
-        Stock: <input type="text" class="form-control textInput" name="stock">
+        Stock: <input type="text" class="form-control textInput" name="stock" placeholder="Quantity Number">
           <% if(!stockNum) { %>
             <% include ../error/nonnum %>
           <% } %>
