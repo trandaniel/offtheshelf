@@ -23,23 +23,23 @@ router.post('/', function(req, res, nxt) {
   var passwordChecker = req.body.password.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) ;
 
   if(isNaN(req.body.streetnumber)) {
-    console.log('st num not num') ;
+    //console.log('st num not num') ;
     req.session.stnum = false ;
   }
 
   if(passwordChecker === -1) {
-    console.log('password must meet requirements') ;
+    //console.log('password must meet requirements') ;
     req.session.badPass = true ;
     //res.redirect('../signup') ;
   }
   if(!req.body.password === req.body.confirmpass) {
-    console.log('passwords must match') ;
+    //console.log('passwords must match') ;
     req.session.nonMatch = true ;
     //res.redirect('../signup') ;
   }
 
   if(req.session.nonMatch || req.session.badPass || !req.session.stnum) {
-    console.log("errors") ;
+    //console.log("errors") ;
     res.render('pharm/signup', {
       profile: req.session.profile,
       nonMatch: req.session.nonMatch,

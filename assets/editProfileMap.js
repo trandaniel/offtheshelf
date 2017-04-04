@@ -20,7 +20,7 @@ sn.onkeyup =ct.onkeyup =cn.onkeyup =snum.onkeyup = function (e) {
   // Clear the timeout if it has already been set.
   // This will prevent the previous task from executing
   // if it has been less than <MILLISECONDS>
-  console.log('event detected');
+  //console.log('event detected');
   clearTimeout(timeout);
   // Make a new timeout set to go off in 800ms
   timeout = setTimeout(function () {
@@ -76,12 +76,12 @@ function initMap() {
 }
 
 function reverseGeo(lati, long) {
-  console.log('reverse geo');
+  //console.log('reverse geo');
   var latlng = new google.maps.LatLng(parseFloat(lati), parseFloat(long));
   //console.log(latlng);
   geocoder = new google.maps.Geocoder();
   geocoder.geocode({'latLng': latlng}, function(results, status) {
-    console.log('entered geocode');
+    //console.log('entered geocode');
     if (status == google.maps.GeocoderStatus.OK) {
       if (results) {
         map.setZoom(12);
@@ -95,7 +95,7 @@ function reverseGeo(lati, long) {
         document.getElementById('lat').value = lati;
         document.getElementById('lng').value = long;
       } else {
-        console.log("no results");
+        //console.log("no results");
         window.alert('No results found');
       }
     } else {
@@ -103,7 +103,7 @@ function reverseGeo(lati, long) {
       window.alert('Geocoder failed due to: ' + status);
     }
   });
-  console.log('end reverseGeo');
+  //console.log('end reverseGeo');
 }
 
 function inputfields(components) {
@@ -138,13 +138,13 @@ function geocode() {
 
   var address = streetnumber + " " + streetname + ', ' +
   cityname + ', ' + countryname;
-  console.log(address);
+  //console.log(address);
   geocoder.geocode({
     'address': address
   },
   function(results, status) {
     if(status == google.maps.GeocoderStatus.OK) {
-      console.log('Results: ', results[0]);
+      //console.log('Results: ', results[0]);
       myloc.setPosition(results[0].geometry.location);
       map.setCenter(results[0].geometry.location);
       document.getElementById('lat').value = results[0].geometry.location.lat();
