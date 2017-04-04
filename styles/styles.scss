@@ -119,7 +119,15 @@ $break-sm: 684px ;
   display: none;
 }
 
+#delthis {
+  text-align: center ;
+  height: 110px ;
+}
+
 .container {
+  > img {
+    padding-top: 75px ;
+  }
   > ul {
     text-align: left ;
     > li {
@@ -127,6 +135,10 @@ $break-sm: 684px ;
       height: 150px ;
     }
   }
+}
+
+.noproderr{
+  text-align: center ;
 }
 
 .align-right {
