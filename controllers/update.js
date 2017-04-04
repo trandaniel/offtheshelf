@@ -43,19 +43,19 @@ router.post('/', function(req, res, nxt) {
               updatePass(req.body.newpass, sessionProfile.id) ;
             }
             else {
-              console.log('password must contain at least 1 capital, 8 characters and digit') ;
+              //console.log('password must contain at least 1 capital, 8 characters and digit') ;
               req.session.badPass = true ;
               // res.redirect('../editprofile') ;
             }
           }
           else {
-            console.log('password dont match') ;
+            //console.log('password dont match') ;
             req.session.nonMatch = true ;
             // res.redirect('../editprofile') ;
           }
         }
         else {
-          console.log('invalid password update') ;
+          //console.log('invalid password update') ;
           req.session.validPass = false ;
           // res.redirect('../editprofile') ;
         }
