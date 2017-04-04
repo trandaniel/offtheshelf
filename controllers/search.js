@@ -7,8 +7,8 @@ router.post('/', function(req, res, nxt) {
   }
 
   var searchTerm = req.body.searchTerm.toLowerCase() ;
-  console.log('searching') ;
-  console.log(searchTerm) ;
+  //console.log('searching') ;
+  //console.log(searchTerm) ;
   var checkInput = "^[a-z0-9]*$" ;
   // console.log(searchTerm.search(/^[a-z0-9]*$/i)) ;
   if(searchTerm.search(/^[a-z0-9]*$/i) === -1) {
@@ -29,7 +29,7 @@ router.post('/', function(req, res, nxt) {
             prods.push(products[i]) ;
           }
         }
-        console.log(prods) ;
+        //console.log(prods) ;
         req.session.searchRes = prods ;
         res.redirect('../results') ;
       }

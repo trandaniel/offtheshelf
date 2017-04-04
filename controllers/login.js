@@ -29,7 +29,7 @@ router.post('/', function(req, res, nxt) {
         res.redirect('../') ;
       }
       else {
-        console.log('invalid password') ;
+        //console.log('invalid password') ;
         req.session.valid = false ;
         res.redirect("../") ;
       }

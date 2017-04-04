@@ -20,7 +20,7 @@ router.get('/404', function(req, res) {
 }) ;
 
 router.get('/profiles', function(req, res) {
-  console.log('/profiles');
+  //console.log('/profiles');
   res.redirect('../getprofiles') ;
 });
 
@@ -72,7 +72,7 @@ router.get('/signup', function(req, res) {
     }) ;
   }
   else {
-    console.log('already logged in') ;
+    //console.log('already logged in') ;
     req.session.user = true ;
     res.redirect('../editprofile') ;
   }
@@ -110,7 +110,7 @@ router.get('/editprofile', function(req, res) {
   }
 
   if(!req.session.profile) {
-    console.log('no login') ;
+    //console.log('no login') ;
     res.render('error/autherr', {
       profile: req.session.profile,
       valid: req.session.valid
@@ -141,7 +141,7 @@ router.get('/addproduct', function(req, res) {
   }
 
   if(!req.session.profile) {
-    console.log('you must be logged in u fuk') ;
+    //console.log('you must be logged in u fuk') ;
     res.redirect('../autherr') ;
   }
   else {
@@ -156,17 +156,17 @@ router.get('/addproduct', function(req, res) {
 
 router.get('/productlist', function(req, res) {
   if(!req.session.profile) {
-    console.log('hello who are u') ;
+    //console.log('hello who are u') ;
     res.redirect('../autherr') ;
   }
   else if(!req.session.products) {
-    console.log('hello u dont have shit') ;
+    //console.log('hello u dont have shit') ;
     res.redirect('../prodlist') ;
   }
   else {
-    console.log('hi looking for list') ;
+    /*console.log('hi looking for list') ;
     console.log(req.session.profile) ;
-    console.log(req.session.products) ;
+    console.log(req.session.products) ;*/
     res.render('pharm/prodlist', {profile: req.session.profile, products: req.session.products}) ;
   }
 }) ;
@@ -179,17 +179,17 @@ router.get('/autherr', function(req, res) {
 }) ;
 
 router.get('/confirmdelete', function(req, res) {
-  console.log('howd u get here you lil shit') ;
+  //console.log('howd u get here you lil shit') ;
   res.redirect('../404')
 }) ;
 
 router.post('/confirmdelete', function(req, res) {
   if(!req.session.profile) {
-    console.log('nope wrong place') ;
+    //console.log('nope wrong place') ;
     res.redirect('../autherr') ;
   }
   else if(!req.session.products) {
-    console.log('u still dont have shit') ;
+    //console.log('u still dont have shit') ;
     res.redirect('../prodlist') ;
   }
   else {
