@@ -4,3 +4,4 @@ db/
 credentials.js
 run.sh
 setcreds.sh
+assets/app.js
