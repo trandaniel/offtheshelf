@@ -7,8 +7,8 @@ var session         = require('express-session') ;
 const crypto = require('crypto'),
   fs = require("fs"),
   http = require("http");
-var privateKey = fs.readFileSync('privatekey.pem').toString();
-var certificate = fs.readFileSync('certificate.pem').toString();
+var privateKey = fs.readFileSync('server-key.pem').toString();
+var certificate = fs.readFileSync('server-cert.pem').toString();
 var credentials = crypto.createCredentials({key: privateKey, cert: certificate});
 
 var app             = express();
