@@ -4,6 +4,13 @@ var mongoose        = require('mongoose') ;
 var bodyParser      = require('body-parser') ;
 var methodOverride  = require('method-override') ;
 var session         = require('express-session') ;
+const crypto = require('crypto'),
+  fs = require("fs"),
+  http = require("http");
+var privateKey = fs.readFileSync('privatekey.pem').toString();
+var certificate = fs.readFileSync('certificate.pem').toString();
+var credentials = crypto.createCredentials({key: privateKey, cert: certificate});
+
 var app             = express();
 // config files ================================================================
 
@@ -54,5 +61,15 @@ app.use('*', function(req, res, nxt) {
 app.listen(port, function() {
     console.log('Listening on port: ' + port);
 });
+
+var handler = function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+};
+
+var server = http.createServer();
+server.setSecure(credentials);
+server.addListener("request", handler);
+server.listen(8000);
 
 exports = module.exports = app ;
