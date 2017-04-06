@@ -4,6 +4,15 @@ var mongoose        = require('mongoose') ;
 var bodyParser      = require('body-parser') ;
 var methodOverride  = require('method-override') ;
 var session         = require('express-session') ;
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('server-key.pem'),
+  cert: fs.readFileSync('server-cert.pem')
+};
+
 var app             = express();
 // config files ================================================================
 
@@ -51,8 +60,11 @@ app.use('*', function(req, res, nxt) {
   res.redirect('../404') ;
 }) ;
 
+http.createServer(app).listen(2000);
+https.createServer(options, app).listen(3000);
+/*
 app.listen(port, function() {
     console.log('Listening on port: ' + port);
-});
+});*/
 
 exports = module.exports = app ;

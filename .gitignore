@@ -5,3 +5,4 @@ credentials.js
 run.sh
 setcreds.sh
 assets/app.js
+server-csr.pem
