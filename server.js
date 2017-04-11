@@ -14,6 +14,7 @@ var app             = express();
 var port = process.env.PORT || 3000;
 
 // parser=======================================================================
+app.use(require('heroku-ssl-redirect')(['production']));
 app.use(bodyParser.json()) ;
 app.use(bodyParser.json({type: 'application/vnd.api+json'})) ;
 app.use(bodyParser.urlencoded({extended: true})) ;
