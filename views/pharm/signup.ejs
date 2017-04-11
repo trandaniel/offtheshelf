@@ -4,32 +4,28 @@
     <title>Sign Up</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" charset="utf-8">
-
+    <%# <script type="text/javascript" src="../node_modules/angular/angular.js"></script>%>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   </head>
   <body>
     <% include ../navbar/nav %>
-    <div class="container">
-      <form class="signup" action="register" method="POST" onload="initMap()">
-        Name: <input type="text" class="form-control textInput" name="name" placeholder="PharmaC" required>
-        Email: <input type="text" class="form-control textInput" name="email" placeholder="example@email.com" required>
-        Password: <input type="password" class="form-control textInput" name="password" required>
-        Confirm Password: <input type="password" class="form-control textInput" name="confirmpass" required><br>
-        <% if(badPass) { %>
-          <% include ../error/badpass %>
-        <% } %>
-        <% if(nonMatch) { %>
-          <% include ../error/nonmatch %>
-        <% } %>
+    <div class="container"  ng-app="signUp" ng-controller="signUpCtrl">
+      <form name="signup" ng-model="signup" class="signup" action="register" method="POST" onload="initMap()">
+        Name: <input type="text" class="form-control textInput" name="name" placeholder="Off The Shelf" required>
+        Email: <div id="bademail" ng-show="signup.email.$invalid && signup.email.$dirty">The email must be in correct format e.g Example@email.com <br></div>
+        <input type="email" class="form-control textInput" name="email" placeholder="example@email.com" ng-model="email" required>
+        Password: <div id="badpass" ng-show="checkPw() && signup.password.$dirty">The password must contain at least 8 characters one uppercase letter, one lowercase letter, a number, and a special character (e.g. !, *, @)</div>
+        <input type="password" class="form-control textInput" name="password" ng-model="password" required>
+        Confirm Password: <div id="nonmatch" ng-show="checkMatch() && signup.confirmpass.$dirty">The passwords must match</div>
+        <input type="password" class="form-control textInput" name="confirmpass" ng-model="confirmpass" required><br>
         Find your pharmacy on the map! <br>
         <!-- MAP HERE TOGGLE BETWEEN MANUAL/MAP-->
         <div class="" id="signupmap" onload="reverseGeo()"></div>
         <div class="" id="reverseGeo"></div>
         <br>
         Address <br> <br>
-        Street Number: <input type="text" class="form-control textInput" id="streetnumber" name="streetnumber" required>
-          <% if(!stnum) { %>
-            <% include ../error/nonnum %>
-          <% } %>
+        Street Number: <div id="nonnum" ng-show="signup.stNum.$invalid && signup.stNum.$dirty">This must be a number!</div>
+        <input type="number" class="form-control textInput" id="streetnumber" name="streetnumber" ng-model="stNum" required>
         Street Name: <input type="text" class="form-control textInput" id="route" name="street" required>
         Country: <input type="text" class="form-control textInput" id="country" name="country" required>
         City: <input type="text" class="form-control textInput" id="locality" name="city" required>
@@ -38,10 +34,49 @@
           <input type="text" id="lng" name="lng" value="">
         </div>
 
-        <button type="submit" class="btn btn-default productButtons" name="button">Submit</button>
+        <button type="submit" class="btn btn-default productButtons" name="button" ng-disabled="$signup.password.$dirty || checkMatch() || signup.email.$invalid || checkPw() || signup.stNum.$invalid || !signup.confirmpass.$dirty">Submit</button>
         <button type="reset" class="btn btn-default productButtons" id="resetValues" name="button">Clear Values</button>
       </form>
     </div>
+    <script type="text/javascript">
+      var app = angular.module('signUp', []) ;
+      app.controller('signUpCtrl', function($scope) {
+        $scope.checkPw = function() {
+          if($scope.signup.password.$viewValue === undefined) {
+            return false ;
+          }
+          if(($scope.signup.password.$viewValue.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()><.,?\/\'\"\\])[!@#$%^&*()><.,?\/\'\"\\a-zA-Z\d]{8,}$/) === -1)) {
+            return true ;
+          }
+          else {
+            return false ;
+          }
+        } ;
+        $scope.checkMatch = function () {
+          if(!$scope.signup.confirmpass.$viewValue === undefined) {
+            return false ;
+          }
+          if(!($scope.signup.password.$viewValue === $scope.signup.confirmpass.$viewValue)) {
+            return true ;
+          }
+          else {
+            return false ;
+          }
+        }
+        $scope.checkStNum = function() {
+          if($scope.signup.stNum.$viewValue === undefined) {
+            return false ;
+          }
+          console.log(isNaN($scope.signup.stNum.$viewValue)) ;
+          if(isNaN($scope.signup.stNum.$viewValue)) {
+            return true ;
+          }
+          else {
+            return false ;
+          }
+        } ;
+      }) ;
+    </script>
     <script type="text/javascript" src="signup.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCioBIw7Zm_9e0Z3a8O0QGVawEZRwPs9TY&callback=initMap">
