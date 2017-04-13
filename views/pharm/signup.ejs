@@ -12,9 +12,9 @@
     <div class="container"  ng-app="signUp" ng-controller="signUpCtrl">
       <form name="signup" ng-model="signup" class="signup" action="register" method="POST" onload="initMap()">
         Name: <input type="text" class="form-control textInput" name="name" placeholder="Off The Shelf" required>
-        Email: <div id="bademail" ng-show="signup.email.$invalid && signup.email.$dirty">The email must be in correct format e.g Example@email.com <br></div>
+        Email: <div id="badpass" ng-show="signup.email.$invalid && signup.email.$dirty">The email must be in correct format e.g Example@email.com <br></div>
         <input type="email" class="form-control textInput" name="email" placeholder="example@email.com" ng-model="email" required>
-        Password: <div id="badpass" ng-show="checkPw() && signup.password.$dirty">The password must contain at least 8 characters one uppercase letter, one lowercase letter, a number, and a special character (e.g. !, *, @)</div>
+        Password: <div id="badpass" ng-show="checkPw() && signup.password.$dirty">The password must contain at least 8 characters one uppercase letter, one lowercase letter, a number, and no special characters (e.g. !, *, @)</div>
         <input type="password" class="form-control textInput" name="password" ng-model="password" required>
         Confirm Password: <div id="nonmatch" ng-show="checkMatch() && signup.confirmpass.$dirty">The passwords must match</div>
         <input type="password" class="form-control textInput" name="confirmpass" ng-model="confirmpass" required><br>
@@ -38,45 +38,7 @@
         <button type="reset" class="btn btn-default productButtons" id="resetValues" name="button">Clear Values</button>
       </form>
     </div>
-    <script type="text/javascript">
-      var app = angular.module('signUp', []) ;
-      app.controller('signUpCtrl', function($scope) {
-        $scope.checkPw = function() {
-          if($scope.signup.password.$viewValue === undefined) {
-            return false ;
-          }
-          if(($scope.signup.password.$viewValue.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()><.,?\/\'\"\\])[!@#$%^&*()><.,?\/\'\"\\a-zA-Z\d]{8,}$/) === -1)) {
-            return true ;
-          }
-          else {
-            return false ;
-          }
-        } ;
-        $scope.checkMatch = function () {
-          if(!$scope.signup.confirmpass.$viewValue === undefined) {
-            return false ;
-          }
-          if(!($scope.signup.password.$viewValue === $scope.signup.confirmpass.$viewValue)) {
-            return true ;
-          }
-          else {
-            return false ;
-          }
-        }
-        $scope.checkStNum = function() {
-          if($scope.signup.stNum.$viewValue === undefined) {
-            return false ;
-          }
-          console.log(isNaN($scope.signup.stNum.$viewValue)) ;
-          if(isNaN($scope.signup.stNum.$viewValue)) {
-            return true ;
-          }
-          else {
-            return false ;
-          }
-        } ;
-      }) ;
-    </script>
+    <script src="signupValidation.js" charset="utf-8"></script>
     <script type="text/javascript" src="signup.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCioBIw7Zm_9e0Z3a8O0QGVawEZRwPs9TY&callback=initMap">

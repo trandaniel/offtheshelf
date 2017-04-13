@@ -84,7 +84,7 @@ router.get('/confirm', function(req, res) {
   }
   else {
     req.session.signedup = undefined ;
-    res.redirect('../editprofile') ;
+    res.render('pharm/confirm', {profile: req.session.profile}) ;
   }
 }) ;
 
