@@ -18,22 +18,22 @@ router.post('/', function(req, res, nxt) {
 
   var session = req.session ;
   var date = new Date() ;
-  var inDate = req.body.sellBy.split('-') ;
+  var inDate = req.body.sellDate.split('/') ;
   for(var i = 0 ; i < inDate.length ; i++) {
     inDate[i] = parseInt(inDate[i]) ;
   }
 
-  if(inDate[0] < date.getFullYear()) {
+  if(inDate[2] < date.getFullYear()) {
     //console.log('cannot add product that has to be sold in the past') ;
     req.session.badProd = true ;
     res.redirect('../addproduct') ;
   }
-  else if(inDate[0] === date.getFullYear() && inDate[1] < (date.getMonth() + 1)) {
+  else if(inDate[2] === date.getFullYear() && inDate[0] < (date.getMonth() + 1)) {
     //console.log('cannot add product that has to be sold in the past') ;
     req.session.badProd = true ;
     res.redirect('../addproduct') ;
   }
-  else if(inDate[0] === date.getFullYear() && inDate[1] === (date.getMonth() + 1) && inDate[2] <= date.getDate()) {
+  else if(inDate[2] === date.getFullYear() && inDate[0] === (date.getMonth() + 1) && inDate[1] <= date.getDate()) {
     //console.log('cannot add product that has to be sold in the past') ;
     req.session.badProd = true ;
     res.redirect('../addproduct') ;
@@ -54,8 +54,8 @@ router.post('/', function(req, res, nxt) {
       name:   req.body.name,
       cost:   req.body.cost,
       stock:  req.body.stock,
-      sellBy: inDate[0] + "-" + (inDate[1]) + "-" + inDate[2],
-      posted: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+      sellBy: inDate[0] + "/" + (inDate[1]) + "/" + inDate[2],
+      posted: (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear(),
       profile: {
         profileId:     req.session.profile.id,
         streetnumber:  req.session.profile.location.streetnumber,
