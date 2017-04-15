@@ -18,7 +18,7 @@ router.post('/', function(req, res, nxt) {
 
   var session = req.session ;
   var date = new Date() ;
-  var inDate = req.body.sellBy.split(' / ') ;
+  var inDate = req.body.sellDate.split('/') ;
   for(var i = 0 ; i < inDate.length ; i++) {
     inDate[i] = parseInt(inDate[i]) ;
   }

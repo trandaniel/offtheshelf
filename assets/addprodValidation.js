@@ -38,7 +38,6 @@ date.addEventListener('blur', function(e) {
     var day = parseInt(values[1]);
     var d = new Date(year, month, day);
     if (!isNaN(d)) {
-      document.getElementById('result').innerText = d.toString();
       var dates = [d.getMonth() + 1, d.getDate(), d.getFullYear()];
       output = dates.map(function(v) {
         v = v.toString();

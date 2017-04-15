@@ -5,31 +5,55 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" charset="utf-8">
   <script type="text/javascript" src="product.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
 <body>
   <% include ../navbar/nav %>
-  <div class="container">
+  <div class="container" ng-app="addProd" ng-controller="addProdCtrl">
     <br>
     <h1>Add a new product you wish to have off your shelf!</h1>
-    <form class="addProd" action="addprod" method="POST">
+    <form class="addProd" name="addprod" ng-model="addprod" action="addprod" method="POST">
       <input type="text" name="email" id="emailsubmit" value="" style="display: none" readonly>
-      Product name: <input type="text" class="form-control textInput" name="name" placeholder="Product Name (Dosage) [Amount]">
-      Product cost: <input type="number" class="form-control textInput" name="cost" placeholder="Cost in $">
+      Product name: <input type="text" class="form-control textInput" name="name" placeholder="Product Name (Dosage) [Amount]" required>
+      Product cost: <input type="number" class="form-control textInput" name="cost" placeholder="Cost in $" required>
       <% if(!costNum) { %>
         <% include ../error/nonnum %>
         <% } %>
-        Stock: <input type="number" class="form-control textInput" name="stock" placeholder="Quantity Number">
+        Stock: <input type="number" class="form-control textInput" name="stock" placeholder="Quantity Number" required>
         <% if(!stockNum) { %>
           <% include ../error/nonnum %>
           <% } %>
-          Sell by: <input type="text" id="sellBy" class="form-control textInput" name="sellBy" placeholder="mm / dd / yyyy">
-          <% if(badProd) { %>
-            <% include ../error/badprod %>
-            <% } %>
-            <button type="submit" class="btn btn-default productButtons" name="button">Add product!</button>
+          Sell by: <div id="badpass" ng-show="checkDate() && addprod.sellDate.$dirty">You cannot sell a product that is past its expiry or sell by date! <br></div>
+          <input type="text" id="sellBy" name="sellDate" ng-model="sellDate" class="form-control textInput" placeholder="mm / dd / yyyy">
+            <button type="submit" class="btn btn-default productButtons" name="button" ng-disabled="checkDate()">Add product!</button>
             <button type="button" class="btn btn-default productButtons" id="resetValues" name="">Clear</button>
           </form>
         </div>
+        <script>
+          var app = angular.module('addProd', []) ;
+          app.controller('addProdCtrl', function($scope) {
+            $scope.checkDate = function() {
+              if ($scope.addprod.sellDate.$viewValue === undefined) {
+                return false ;
+              }
+              var date = new Date() ;
+              var input = $scope.addprod.sellDate.$viewValue ;
+              var sellDate = input.split('/') ;
+              if (parseInt(sellDate[2]) < date.getFullYear()) {
+                return true ;
+              }
+              else if((parseInt(sellDate[2]) === date.getFullYear()) && (parseInt(sellDate[0]) < (date.getMonth() + 1))) {
+                return true ;
+              }
+              else if((parseInt(sellDate[2]) === date.getFullYear()) && (parseInt(sellDate[0]) === (date.getMonth() + 1)) && (parseInt(sellDate[1]) <= date.getDate())) {
+                return true ;
+              }
+              else {
+                return false ;
+              }
+            } ;
+          }) ;
+        </script>
         <script src="addprodValidation.js"></script>
       </body>
       </html>
