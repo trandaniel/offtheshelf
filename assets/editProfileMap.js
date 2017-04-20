@@ -1,6 +1,6 @@
 var map;
 var currentPos = [];
-var geomarker;
+var geomarker ;
 var geocoder ;
 var timeout = null;
 var myloc;
@@ -89,7 +89,6 @@ function reverseGeo(lati, long) {
         document.getElementById('reverseGeo').style.display = "block";
 
         for (var c = 0 ; c < results[0].address_components.length ; c++) {
-          //console.log('~~~~', c);
           inputfields(results[0].address_components[c]);
         }
         document.getElementById('lat').value = lati;

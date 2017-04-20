@@ -156,11 +156,11 @@ router.get('/addproduct', function(req, res) {
 
 router.get('/productlist', function(req, res) {
   if(!req.session.profile) {
-    //console.log('hello who are u') ;
+    //console.log('not logged in') ;
     res.redirect('../autherr') ;
   }
   else if(!req.session.products) {
-    //console.log('hello u dont have shit') ;
+    //console.log('no prods') ;
     res.redirect('../prodlist') ;
   }
   else {
@@ -179,17 +179,17 @@ router.get('/autherr', function(req, res) {
 }) ;
 
 router.get('/confirmdelete', function(req, res) {
-  //console.log('howd u get here you lil shit') ;
+  //console.log('not logged in') ;
   res.redirect('../404')
 }) ;
 
 router.post('/confirmdelete', function(req, res) {
   if(!req.session.profile) {
-    //console.log('nope wrong place') ;
+    //console.log('bad route') ;
     res.redirect('../autherr') ;
   }
   else if(!req.session.products) {
-    //console.log('u still dont have shit') ;
+    //console.log('no prodcuts) ;
     res.redirect('../prodlist') ;
   }
   else {

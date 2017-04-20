@@ -2,14 +2,11 @@ var Profile = require('../app/models/profile') ;
 var router  = require('express').Router() ;
 
 router.get('/', function(req, res, nxt) {
-  //console.log('asdfa');
   Profile.find().exec(function(err, profiles) {
     if(err) {
-       //console.log('wtf');
       return nxt(err) ;
     }
     var session = req.session;
-    //console.log('hello');
     //console.log(profiles);
     var info = [];
 
